@@ -5,7 +5,7 @@ import { fragmentShader } from "./shaders/fragment";
 import * as THREE from 'three';
 
 
-const Countries = () => {
+const Countries = ({globeSpeed}) => {
     
     const {data} = useContext(GlobeContext);
 
@@ -27,10 +27,13 @@ const Countries = () => {
     }
 
     const handlePointerOver = (event) =>{
-        const country = event.eventObject.userData;
-        console.log(country);
+        //const country = event.eventObject.userData;
+        globeSpeed.current = 0;
     }
 
+    const handlePointerOut = (event) =>{
+        globeSpeed.current = 0.005;
+    }
     return (
         <>
            {
@@ -45,6 +48,7 @@ const Countries = () => {
                             userData={country}
 
                             onPointerOver={handlePointerOver}
+                            onPointerOut={handlePointerOut}
                         >
                             <cylinderGeometry args={[0.025,0.05,Math.random() * 0.5 + 0.1,3]}/>
                             <shaderMaterial

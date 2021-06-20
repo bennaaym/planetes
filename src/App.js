@@ -1,11 +1,10 @@
-import Scene from './3D/Scene';
-import './assets/css/global.css';
+import Home from "./components/home/Home";
 
 const App = () => {
   return (
     <>
       <div className="App"> 
-          <Scene/>
+          <Home/>
       </div>
     </>
   );

@@ -17,15 +17,13 @@ const Globe = () => {
         globeMesh.current.rotation.y += globeSpeed.current;
     })
 
-    const handlePointerOver = () => globeSpeed.current =  0;
-    const handlePointerOut = () => globeSpeed.current = 0.005;
+    //const handlePointerOver = () => globeSpeed.current =  0;
+    //const handlePointerOut = () => globeSpeed.current = 0.005;
 
     return (
         <GlobeContextProvider>
             <mesh 
                 ref={globeMesh}
-                onPointerOver={handlePointerOver}
-                onPointerOut={handlePointerOut}
             >
                 <sphereGeometry args={[2.5,100,100]}/>
                 <shaderMaterial 
@@ -37,7 +35,7 @@ const Globe = () => {
                         }
                     }}
                 />
-                <Countries/>
+                <Countries globeSpeed={globeSpeed}/>
             </mesh>
         </GlobeContextProvider>
     );
