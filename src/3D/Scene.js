@@ -3,8 +3,10 @@ import { Canvas } from '@react-three/fiber';
 import {OrbitControls} from '@react-three/drei';
 import Globe from './globe/Globe';
 import Atmosphere from './atmosphere/Atmosphere';
+
+
+
 const Scene = () => {
- 
     return (
       <Canvas>
           <Suspense fallback={null}>

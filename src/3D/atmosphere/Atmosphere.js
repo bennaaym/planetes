@@ -1,6 +1,5 @@
-import {vertexShader} from './shaders/vertex.js';
-import {fragmentShader} from './shaders/fragment.js';
-import { ReactThreeFiber } from '@react-three/fiber';
+import {vertexShader} from './shaders/vertex';
+import {fragmentShader} from './shaders/fragment';
 import * as THREE from 'three';
 const Atmosphere = () => {
     return (
