@@ -16,7 +16,7 @@ const Scene = () => {
           <Suspense fallback={null}>
             <OrbitControls
                 enablePan={false}
-                enableRotate ={false}
+                enableRotate ={true}
                 minDistance={4.5}
                 maxDistance={4.5}
             />
