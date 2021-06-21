@@ -1,14 +1,10 @@
-import { useContext } from "react";
-import { GlobeContext } from "../../contexts/GlobeContext";
 import { vertexShader } from "./shaders/vertex";
 import { fragmentShader } from "./shaders/fragment";
 import * as THREE from 'three';
 
 
-const Countries = ({globeSpeed}) => {
+const Countries = ({data, globeSpeed, setCurrentCountry}) => {
     
-    const {data} = useContext(GlobeContext);
-
     const geoCoordsToSphericalCoords = (geoCoords) =>{
 
         /* transform geographic coordinates into spherical coordinates */
@@ -27,12 +23,18 @@ const Countries = ({globeSpeed}) => {
     }
 
     const handlePointerOver = (event) =>{
-        //const country = event.eventObject.userData;
+        const country = event.eventObject.userData;
+        setCurrentCountry({
+            ...country,
+            x:event.clientX - 1 ,
+            y:event.clientY + 1, 
+        });
         globeSpeed.current = 0;
     }
 
     const handlePointerOut = (event) =>{
         globeSpeed.current = 0.005;
+        setCurrentCountry(null);
     }
     return (
         <>
@@ -50,7 +52,7 @@ const Countries = ({globeSpeed}) => {
                             onPointerOver={handlePointerOver}
                             onPointerOut={handlePointerOut}
                         >
-                            <cylinderGeometry args={[0.025,0.05,Math.random() * 0.5 + 0.1,3]}/>
+                            <cylinderGeometry args={[0.025,0.05, (index /197) * 0.4 + 0.1,3]}/>
                             <shaderMaterial
                                 vertexShader= {vertexShader}
                                 fragmentShader= {fragmentShader}

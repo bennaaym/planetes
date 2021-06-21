@@ -2,7 +2,7 @@ import Scene from '../../3D/Scene';
 
 const GlobeModel = () => {
     return (
-        <div className="min-h-full col-span-9">
+        <div className="h-full col-span-8">
             <Scene/>
         </div>
     );

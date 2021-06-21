@@ -9,6 +9,7 @@ const GlobeContextProvider = ({children}) => {
     
     const API = 'https://restcountries.eu/rest/v2/';
     const [data,setData] = useState([]);
+    const [currentCountry,setCurrentCountry] = useState(null);
 
     useEffect(()=>{
         
@@ -41,7 +42,11 @@ const GlobeContextProvider = ({children}) => {
 
 
     return(
-        <GlobeContext.Provider value={{data}}>
+        <GlobeContext.Provider value={{
+            data,
+            currentCountry,
+            setCurrentCountry,
+        }}>
             {children}
         </GlobeContext.Provider>
     )

@@ -1,8 +1,12 @@
+@import url('https://fonts.googleapis.com/css2?family=Archivo+Black&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Raleway:wght@400;500;600;700;800;900&display=swap');
+
 *
 {
     margin : 0;
     padding : 0;
     box-sizing: border-box;
+    font-family: 'Raleway', sans-serif;
 }
 
 
@@ -15,4 +19,35 @@ body
 {
     width: 100%;
     height: 100vh;
+}
+
+.news
+{
+   height: 60vh;
+}
+
+/* width */
+.news::-webkit-scrollbar 
+{
+    width: 5px;
+    cursor: pointer;
+}
+  
+/* Track */
+.news::-webkit-scrollbar-track 
+{
+    background: #F9FAFB;
+}
+  
+/* Handle */
+.news::-webkit-scrollbar-thumb 
+{
+    background: #7969FF;
+}
+  
+
+/* Handle on hover */
+.news::-webkit-scrollbar-thumb:hover 
+{
+    cursor: pointer;
 }
