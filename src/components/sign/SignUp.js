@@ -2,7 +2,7 @@ import Form from './Form';
 
 const SignUp = () => {
     return (
-        <Form title={'sign up'}/>
+        <Form title={'sign up'} signin={false}/>
     );
 }
  

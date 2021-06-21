@@ -4,7 +4,6 @@ const NavBar = () => {
     const links = [
         {label : 'destinations' , path : '/destinations'},
         {label : 'experiences' , path : '/experiences'},
-        {label : 'feedback' , path:'/feedback'},
         {label : 'about' , path:'about'},
     ]
 
@@ -18,7 +17,7 @@ const NavBar = () => {
                 </Link>
             </h1>
 
-            <ul className="flex items-center text-sm tracking-wider">
+            <ul className="flex items-center text-sm tracking-wider font-bold">
                 {
                     links.map((link,index)=>{
                         return(
@@ -33,12 +32,12 @@ const NavBar = () => {
                         )
                     })
                 }
+                <Link to={'/signin'}>
+                    <button className="bg-indigo-light text-indigo-white text-sm font-bold tracking-wider uppercase px-6 py-2 ml-4 rounded-full focus:outline-none">
+                            sign in
+                    </button>
+                </Link>
 
-                <button className="bg-indigo-light text-indigo-white text-sm font-black tracking-wider uppercase px-6 py-3 ml-4 rounded-full focus:outline-none">
-                    <Link to={'/signin'}>
-                        sign in
-                    </Link>
-                </button>
 
             </ul>
         </nav>

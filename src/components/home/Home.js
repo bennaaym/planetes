@@ -4,7 +4,7 @@ import CountryInfo from "./CountryInfo";
 
 const Home = () => {
     return (
-        <div className="grid grid-cols-12 relative">
+        <div className="relative grid grid-cols-12 overflow-hidden">
            <GlobeModel/>
            <News/>
            <CountryInfo/>
