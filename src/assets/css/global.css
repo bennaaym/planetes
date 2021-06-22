@@ -23,7 +23,7 @@ body
 
 .news
 {
-   height: 60vh;
+   height: 58vh;
 }
 
 /* width */
@@ -48,6 +48,32 @@ body
 
 /* Handle on hover */
 .news::-webkit-scrollbar-thumb:hover 
+{
+    cursor: pointer;
+}
+
+/* width */
+::-webkit-scrollbar 
+{
+    width: 8px;
+    cursor: pointer;
+}
+  
+/* Track */
+::-webkit-scrollbar-track 
+{
+    background: #F9FAFB;
+}
+  
+/* Handle */
+::-webkit-scrollbar-thumb 
+{
+    background: #7969FF;
+}
+  
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover 
 {
     cursor: pointer;
 }

@@ -1,6 +1,11 @@
+
+import {useContext} from 'react';
 import { Link } from "react-router-dom";
+import { AuthContext } from "../../contexts/AuthContext";
+
 const NavBar = () => {
 
+    const {currentUser} = useContext(AuthContext);
     const links = [
         {label : 'destinations' , path : '/destinations'},
         {label : 'experiences' , path : '/experiences'},
@@ -32,13 +37,14 @@ const NavBar = () => {
                         )
                     })
                 }
-                <Link to={'/signin'}>
-                    <button className="bg-indigo-light text-indigo-white text-sm font-bold tracking-wider uppercase px-6 py-2 ml-4 rounded-full focus:outline-none">
-                            sign in
-                    </button>
-                </Link>
-
-
+                {
+                    !currentUser &&
+                    <Link to={'/signin'}>
+                        <button className="bg-indigo-light text-indigo-white text-sm font-bold tracking-wider uppercase px-6 py-2 ml-4 rounded-full focus:outline-none">
+                                sign in
+                        </button>
+                    </Link>
+                }
             </ul>
         </nav>
     );

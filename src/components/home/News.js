@@ -34,7 +34,7 @@ const News = () => {
     ]
 
     return (
-        <div className="col-span-4  pl-4 pr-8 pt-32 h-screen" >
+        <div className="col-span-4  pl-4 pr-8 pt-36 h-screen" >
 
             <h1 className="text-xl font-black text-indigo-light uppercase tracking-wider mb-8">
                 <FontAwesomeIcon icon={faFire}/>

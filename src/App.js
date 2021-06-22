@@ -1,4 +1,7 @@
 import { Switch , Route } from "react-router";
+import PrivateRoute from "./components/auth/PrivateRoute";
+import AddExperience from "./components/experiences/AddExperience";
+import Experiences from "./components/experiences/Experiences";
 import Home from "./components/home/Home";
 import NavBar from "./components/nav/NavBar";
 import SignIn from "./components/sign/SignIn";
@@ -17,6 +20,8 @@ const App = () => {
                 <Route exact path='/' component={Home}/>
                 <Route path='/signin' component={SignIn}/>
                 <Route path='/signup' component={SignUp}/>
+                <Route path='/experiences' component={Experiences}/>
+                <PrivateRoute path='/add-experience' component={AddExperience}/>
             </Switch>
           </div>
         </GlobeContextProvider>

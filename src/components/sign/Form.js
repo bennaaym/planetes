@@ -4,7 +4,7 @@ import { faGithub, faGoogle } from '@fortawesome/free-brands-svg-icons';
 import { Link } from 'react-router-dom';
 import Alert from './Alert';
 import { auth } from '../../firebase/firebase';
-import { signUpWithEmailAndPassword } from '../../actions/authAction';
+import { signUpWithEmailAndPassword, signInWithEmailAndPassword } from '../../actions/authAction';
 
 const Form = ({title,signin}) => {
 
@@ -22,17 +22,32 @@ const Form = ({title,signin}) => {
         
         if(!signin)
         {
-           try
-           {
-             setError('')
-             setLoading(true);
-             signUpWithEmailAndPassword(auth,user.email,user.password)
-           }
-           catch
-           {
-             setError('db error')
-           }
-           
+          
+            signUpWithEmailAndPassword(auth,user.email,user.password)
+            .then((res)=>{
+                setError('');
+                setLoading(true);
+            })
+            .catch((error)=>{
+                setLoading(false);
+                setError(error.message);
+                console.log(error.message);
+            })
+        
+        }
+        else
+        {
+            signInWithEmailAndPassword(auth,user.email,user.password)
+            .then((res)=>{
+                setError('');
+                setLoading(true);
+                console.log(res)
+            })
+            .catch((error)=>{
+                setLoading(false);
+                setError(error.message);
+                console.log(error.message);
+            })
         }
          
     }
