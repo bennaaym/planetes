@@ -1,13 +1,16 @@
 import { useState, useRef } from 'react';
+import { useHistory } from 'react-router';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faGithub, faGoogle } from '@fortawesome/free-brands-svg-icons';
 import { Link } from 'react-router-dom';
 import Alert from './Alert';
-import { auth } from '../../firebase/firebase';
 import { signUpWithEmailAndPassword, signInWithEmailAndPassword } from '../../actions/authAction';
+import { addUser } from '../../actions/dbActions';
+
 
 const Form = ({title,signin}) => {
 
+    const history = useHistory();
 
     const username = useRef()
     const email = useRef();
@@ -22,31 +25,31 @@ const Form = ({title,signin}) => {
         
         if(!signin)
         {
-          
-            signUpWithEmailAndPassword(auth,user.email,user.password)
+            user.name = username.current.value;
+            signUpWithEmailAndPassword(user.email,user.password)
             .then((res)=>{
                 setError('');
                 setLoading(true);
+                addUser(res.user.uid,user);
+                history.push('/');
             })
             .catch((error)=>{
                 setLoading(false);
                 setError(error.message);
-                console.log(error.message);
             })
         
         }
         else
         {
-            signInWithEmailAndPassword(auth,user.email,user.password)
+            signInWithEmailAndPassword(user.email,user.password)
             .then((res)=>{
                 setError('');
                 setLoading(true);
-                console.log(res)
+                history.push('/');
             })
             .catch((error)=>{
                 setLoading(false);
                 setError(error.message);
-                console.log(error.message);
             })
         }
          

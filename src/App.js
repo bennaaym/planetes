@@ -8,23 +8,27 @@ import SignIn from "./components/sign/SignIn";
 import SignUp from "./components/sign/SignUp";
 import AuthContextProvider from "./contexts/AuthContext";
 import GlobeContextProvider from './contexts/GlobeContext';
+import DBContextProvider from "./contexts/DBContext";
+
 
 const App = () => {
   return (
     <>
       <AuthContextProvider>
-        <GlobeContextProvider>
-          <div className="App"> 
-            <NavBar/>
-            <Switch>
-                <Route exact path='/' component={Home}/>
-                <Route path='/signin' component={SignIn}/>
-                <Route path='/signup' component={SignUp}/>
-                <Route path='/experiences' component={Experiences}/>
-                <PrivateRoute path='/add-experience' component={AddExperience}/>
-            </Switch>
-          </div>
-        </GlobeContextProvider>
+        <DBContextProvider>
+          <GlobeContextProvider>
+            <div className="App"> 
+              <NavBar/>
+              <Switch>
+                  <Route exact path='/' component={Home}/>
+                  <Route path='/signin' component={SignIn}/>
+                  <Route path='/signup' component={SignUp}/>
+                  <Route path='/experiences' component={Experiences}/>
+                  <PrivateRoute path='/add-experience' component={AddExperience}/>
+              </Switch>
+            </div>
+          </GlobeContextProvider>
+        </DBContextProvider>
       </AuthContextProvider>
     </>
   );

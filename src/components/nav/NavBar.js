@@ -1,7 +1,9 @@
-
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import {faSignOutAlt} from '@fortawesome/free-solid-svg-icons'
 import {useContext} from 'react';
 import { Link } from "react-router-dom";
 import { AuthContext } from "../../contexts/AuthContext";
+import { signOut } from '../../actions/authAction';
 
 const NavBar = () => {
 
@@ -44,6 +46,15 @@ const NavBar = () => {
                                 sign in
                         </button>
                     </Link>
+                }
+
+                {
+                    currentUser &&
+                    <button 
+                        onClick={signOut}
+                        className="bg-indigo-light text-indigo-white text-sm font-bold tracking-wider uppercase px-6 py-2 ml-4 rounded-full focus:outline-none">
+                        <FontAwesomeIcon icon={faSignOutAlt} size='lg'/>
+                    </button>
                 }
             </ul>
         </nav>

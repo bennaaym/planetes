@@ -4,33 +4,7 @@ import { faFire, faMapMarkerAlt } from '@fortawesome/free-solid-svg-icons';
 const News = () => {
 
     const articles = [
-        {
-            country:'usa',
-            title:'The retrofuture of old games',
-            author:'VASILIY YALTONSKI',
-        },
-
-        {
-            country:'usa',
-            title:'The retrofuture of old games',
-            author:'VASILIY YALTONSKI',
-        },
-
-        {
-            country:'usa',
-            title:'The retrofuture of old games',
-            author:'VASILIY YALTONSKI',
-        },
-        {
-            country:'usa',
-            title:'The retrofuture of old games',
-            author:'VASILIY YALTONSKI',
-        },
-        {
-            country:'usa',
-            title:'The retrofuture of old games',
-            author:'VASILIY YALTONSKI',
-        },
+       
     ]
 
     return (

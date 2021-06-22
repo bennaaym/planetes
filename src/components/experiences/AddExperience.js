@@ -1,7 +1,16 @@
-import { useState,useRef } from "react";
+import { useState,useRef,useContext } from "react";
+import { useHistory } from "react-router";
+import Alert from "../sign/Alert";
+import { addArticle } from "../../actions/dbActions";
+import { AuthContext} from "../../contexts/AuthContext";
 
 const AddExperience = () => {
 
+    const {currentUser} = useContext(AuthContext);
+    
+    const history = useHistory();
+
+    const [error,setError] = useState('');
     const [loading, setLoading] = useState(false);
     const country = useRef();
     const title = useRef();
@@ -10,12 +19,22 @@ const AddExperience = () => {
 
     const handleSubmit=(event)=>{
         event.preventDefault();
-        setLoading(true)
-        console.log(
-            country.current.value,
-            title.current.value,
-            description.current.value
-        )
+        console.log(currentUser.uid)
+        addArticle({
+            country:country.current.value,
+            title:title.current.value,
+            description: description.current.value,
+            author:currentUser.uid
+        })
+        .then(()=>{
+            setLoading(true);
+            setError('');
+            history.push('/experiences');
+        })
+        .catch(error =>{
+            setLoading(false);
+            setError(error.message);
+        })
     }
 
     return (
@@ -59,10 +78,13 @@ const AddExperience = () => {
                         type="submit"
                         className=" bg-indigo-dark hover:bg-indigo-medium text-indigo-white font-black uppercase tracking-wider py-2 px-4 rounded focus:outline-none"
                         >                        
-
                         publish
-
                     </button>
+
+                    {
+                        error &&
+                        <Alert alert={error}/>
+                    }
 
                 </form>
             </div>
