@@ -15,7 +15,7 @@ const Button = ({articleId,title,icon,votes,color,action,disable,agreed}) => {
             <button 
                 disabled={disable}
                 onClick={handleClick}
-                className={`flex items-center flex-row w-full p-2 px-6 bg-${color}-${disable?'600':'500'} ${disable ? `hover:bg-${color}-600`:''} text-md rounded-l-full uppercase focus:outline-none`}>
+                className={`flex items-center flex-row w-full p-2 px-6 bg-${color}-${disable?'600':'500'} ${!disable ? `hover:bg-${color}-600`:''} text-md rounded-l-full uppercase focus:outline-none`}>
                 
                 <FontAwesomeIcon icon={icon}/>
                 <span className="ml-2">

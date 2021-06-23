@@ -1,14 +1,12 @@
-import { useContext } from "react";
 import { useHistory } from "react-router";
-import ArticleResume from "./article/ArticleReume"
-import { DBContext } from "../../contexts/DBContext";
-
+import ArticleResume from "./article/ArticleReume";
+import { useDB } from "../../contexts/DBContext";
 
 const Experiences = () => {
-
-    const {articles} = useContext(DBContext);
     const history = useHistory();
 
+    const {articles} = useDB(); 
+    
     const handleShareButton = () =>{
         history.push('/add-experience');
     }

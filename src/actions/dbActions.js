@@ -1,6 +1,12 @@
 import firebase from 'firebase/app'
 import {db} from '../firebase/firebase';
 
+
+export const getCollection=(name)=>{
+    return db.collection(name);
+}
+
+
 /* users collection */
 export const addUser = (id,user) =>
 {
@@ -27,7 +33,7 @@ export const addArticle = (article) =>{
 
 
 export const getArticles = () =>{
-    return db.collection('articles').get();
+    return db.collection('articles').orderBy('createdAt').get();
 }
 
 export const getArticle = (id) =>{

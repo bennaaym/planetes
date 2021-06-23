@@ -29,7 +29,7 @@ const AuthContextProvider = ({children}) => {
         })
          
      
-        return unsubscribe
+        return () => unsubscribe()
      }, [])
      
 

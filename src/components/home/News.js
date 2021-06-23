@@ -1,11 +1,10 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faFire, faMapMarkerAlt } from '@fortawesome/free-solid-svg-icons';
-
+import { useDB } from '../../contexts/DBContext';
+import { Link } from 'react-router-dom';
 const News = () => {
 
-    const articles = [
-       
-    ]
+    const {articles}  = useDB();
 
     return (
         <div className="col-span-4  pl-4 pr-8 pt-36 h-screen" >
@@ -19,8 +18,9 @@ const News = () => {
 
             <div className="news overflow-y-auto " >
                 {
-                    articles.map((article,index)=>{
+                    articles.slice(0,5).map((article,index)=>{
                         return(
+                        <Link to={`/experiences/${article.id}`}>
                             <div
                                 key={index}
                                 className="font-bold mb-6"
@@ -33,7 +33,7 @@ const News = () => {
                                 </p>
                             
                             
-                                <h4 className="text-xl text-indigo-white cursor-pointer">
+                                <h4 className="text-xl text-indigo-white hover:text-indigo-light cursor-pointer">
                                     {article.title}
                                 </h4>
                             
@@ -43,6 +43,7 @@ const News = () => {
                                 </p>
                             
                             </div>
+                        </Link>
                         )})   
                 }
             </div>

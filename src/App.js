@@ -8,8 +8,8 @@ import SignIn from "./components/sign/SignIn";
 import SignUp from "./components/sign/SignUp";
 import AuthContextProvider from "./contexts/AuthContext";
 import GlobeContextProvider from './contexts/GlobeContext';
-import DBContextProvider from "./contexts/DBContext";
 import Article from "./components/experiences/article/Article";
+import DBContextProvider from "./contexts/DBContext";
 
 
 const App = () => {

@@ -1,29 +1,26 @@
-import { useState, useEffect } from "react";
-import { createContext } from "react";
-import { getArticles } from "../actions/dbActions";
+import { useState, useEffect, useContext, createContext } from "react";
+import { getCollection } from "../actions/dbActions";
 
-export const DBContext = createContext();
+const DBContext = createContext();
+
+export const useDB =()=>{
+    return useContext(DBContext);
+}
+
 
 const DBContextProvider = ({children}) => {
 
-    const [articles,setArticles] = useState([]);
+    const [articles , setArticles] = useState([]);
 
     useEffect(() => {
-        getArticles()
-        .then((snapshot)=>{
-            const articles = snapshot.docs.map(doc => {
-                const data = doc.data();
-                return {
-                    id:doc.id,
-                    ...data
-                }
-            });
-            setArticles(articles);     
+        const unsubscribe = getCollection('articles').orderBy('createdAt','desc').onSnapshot(snapshot=>{            
+            const articles = snapshot.docs.map(doc => {return {id:doc.id,...doc.data()}});
+            setArticles([...articles]);
         })
-        .catch((error)=>{
-            console.log(error)
-        })
-    }, [])
+
+        return () => unsubscribe();
+
+    }, []);
 
     return (
         <DBContext.Provider value={{
@@ -34,4 +31,4 @@ const DBContextProvider = ({children}) => {
     );
 }
  
-export default DBContextProvider;
+export default DBContextProvider
