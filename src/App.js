@@ -1,5 +1,5 @@
 import { Switch , Route } from "react-router";
-import PrivateRoute from "./components/auth/PrivateRoute";
+import PrivateRoute from "./components/auth/PrivateRouteActive";
 import AddExperience from "./components/experiences/AddExperience";
 import Experiences from "./components/experiences/Experiences";
 import Home from "./components/home/Home";
@@ -9,6 +9,7 @@ import SignUp from "./components/sign/SignUp";
 import AuthContextProvider from "./contexts/AuthContext";
 import GlobeContextProvider from './contexts/GlobeContext';
 import DBContextProvider from "./contexts/DBContext";
+import Article from "./components/experiences/article/Article";
 
 
 const App = () => {
@@ -23,6 +24,7 @@ const App = () => {
                   <Route exact path='/' component={Home}/>
                   <Route path='/signin' component={SignIn}/>
                   <Route path='/signup' component={SignUp}/>
+                  <Route path='/experiences/:id' component={Article}/>
                   <Route path='/experiences' component={Experiences}/>
                   <PrivateRoute path='/add-experience' component={AddExperience}/>
               </Switch>

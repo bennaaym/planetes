@@ -10,7 +10,6 @@ export const signInWithEmailAndPassword = (email,password) =>{
 }
 
 
-
 export const signOut = () =>{
     return auth.signOut();
 }

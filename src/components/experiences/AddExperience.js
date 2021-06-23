@@ -7,7 +7,7 @@ import { AuthContext} from "../../contexts/AuthContext";
 const AddExperience = () => {
 
     const {currentUser} = useContext(AuthContext);
-    
+
     const history = useHistory();
 
     const [error,setError] = useState('');
@@ -19,12 +19,12 @@ const AddExperience = () => {
 
     const handleSubmit=(event)=>{
         event.preventDefault();
-        console.log(currentUser.uid)
         addArticle({
             country:country.current.value,
             title:title.current.value,
             description: description.current.value,
-            author:currentUser.uid
+            author:currentUser.displayName,
+            authorId:currentUser.uid,
         })
         .then(()=>{
             setLoading(true);

@@ -1,13 +1,12 @@
 import { useContext } from "react";
 import { useHistory } from "react-router";
-import Article from "./Article"
+import ArticleResume from "./article/ArticleReume"
 import { DBContext } from "../../contexts/DBContext";
 
 
 const Experiences = () => {
 
     const {articles} = useContext(DBContext);
-
     const history = useHistory();
 
     const handleShareButton = () =>{
@@ -19,10 +18,10 @@ const Experiences = () => {
             <div className='col-span-8'>
                 {
                     articles &&
-                    articles.map((article,index)=>{
+                    articles.map((article)=>{
                         return (
-                            <Article 
-                                key={index}
+                            <ArticleResume 
+                                key={article.id}
                                 article={article}
                             />
                         )

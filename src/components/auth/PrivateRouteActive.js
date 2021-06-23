@@ -2,7 +2,7 @@ import { useContext } from 'react';
 import {Redirect, Route} from 'react-router-dom';
 import {AuthContext} from '../../contexts/AuthContext';
 
-const PrivateRoute = ({component:Component , ...res}) => {
+const PrivateRoute = ({flag, component:Component , ...res}) => {
     
     const {currentUser} = useContext(AuthContext);
 
@@ -10,7 +10,7 @@ const PrivateRoute = ({component:Component , ...res}) => {
         <Route
             {...res}
             render = {props => {
-                return currentUser ? <Component {...props}/> : <Redirect to='/signin'/>
+                return (flag || currentUser) ? <Component {...props}/> : <Redirect to='/signin'/>
             }}
         >
 

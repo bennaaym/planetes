@@ -11,13 +11,19 @@ const DBContextProvider = ({children}) => {
     useEffect(() => {
         getArticles()
         .then((snapshot)=>{
-            const articles = snapshot.docs.map(doc => doc.data());
+            const articles = snapshot.docs.map(doc => {
+                const data = doc.data();
+                return {
+                    id:doc.id,
+                    ...data
+                }
+            });
             setArticles(articles);     
         })
         .catch((error)=>{
             console.log(error)
         })
-    }, [articles])
+    }, [])
 
     return (
         <DBContext.Provider value={{

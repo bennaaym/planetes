@@ -1,26 +1,28 @@
 import firebase from 'firebase/app'
 import {db} from '../firebase/firebase';
 
+/* users collection */
 export const addUser = (id,user) =>
 {
     return db.collection('users').doc(id).set(user);
 }
 
+
+export const getUser = (id) =>{
+    return db.collection('users').doc(id).get();
+}
+
+
+/* articles collections */
 export const addArticle = (article) =>{
-    return db.collection('users').doc(article.author).get()
-             .then(snapshot =>{
-                 const author = snapshot.data().name;
-                 db.collection('articles').add({
+    return db.collection('articles').add({
                     ...article,
-                    author,
                     createdAt:firebase.firestore.FieldValue.serverTimestamp(),
-                    like:0,
-                    dislike:0,
+                    likes:[],
+                    dislikes:[],
                     comments:[],
-                    tags:[]
+                    tags:['ai','society','government']
                 });
-             })
-             .catch(error=>{})
 }
 
 
@@ -28,7 +30,22 @@ export const getArticles = () =>{
     return db.collection('articles').get();
 }
 
+export const getArticle = (id) =>{
+    return db.collection('articles').doc(id).get();
+}
 
-/*
 
-*/
+export const updateArticleLikes = (id,likes) =>{
+    return db.collection('articles').doc(id).update({
+        likes
+    })
+    .then(()=>{})
+    .catch(error=>{console.log(error)});
+}   
+
+
+export const updateArticleDislikes = (id,dislikes) =>{
+    return db.collection('articles').doc(id).update({
+        dislikes
+    })
+}   
