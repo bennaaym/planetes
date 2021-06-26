@@ -40,10 +40,6 @@ const Article = () => {
             })
             .catch(error=>{})
        }
-       else
-       {
-            history.push('/experiences')
-       }
     }
 
     return (

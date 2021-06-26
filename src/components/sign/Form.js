@@ -4,11 +4,12 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faGithub, faGoogle } from '@fortawesome/free-brands-svg-icons';
 import { Link } from 'react-router-dom';
 import Alert from './Alert';
-import { signUpWithEmailAndPassword, signInWithEmailAndPassword } from '../../actions/authAction';
+import { signUpWithEmailAndPassword, signInWithEmailAndPassword, signWithGoogle, signWithGithub } from '../../actions/authAction';
 import { addUser } from '../../actions/dbActions';
 
 
 const Form = ({title,signin}) => {
+
 
     const history = useHistory();
 
@@ -55,6 +56,20 @@ const Form = ({title,signin}) => {
          
     }
 
+
+    const handleSocialClick = (signMethod) =>{
+        signMethod()
+        .then((res)=>{
+            setError('');
+            setLoading(true);
+            history.push('/');
+        })
+        .catch((error)=>{
+            setLoading(false);
+            setError(error.message)
+        })
+    }
+
     return (
         <div className="flex items-center justify-center w-full h-full">
             <div className="px-0 py-10 lg:w-1/3 md:w-1/2">
@@ -63,10 +78,14 @@ const Form = ({title,signin}) => {
                         {title} with social 
                     </h3>
                     <div>
-                        <button className="mr-3 focus:outline-none">
+                        <button 
+                            onClick={()=>handleSocialClick(signWithGithub)}
+                            className="mr-3 focus:outline-none">
                             <FontAwesomeIcon icon={faGithub} size='2x'/>
                         </button>
-                        <button className="focus:outline-none">
+                        <button 
+                            onClick={()=>handleSocialClick(signWithGoogle)}
+                            className="focus:outline-none">
                             <FontAwesomeIcon icon={faGoogle} size='2x'/>
                         </button>
                     </div>

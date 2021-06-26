@@ -11,6 +11,7 @@ import GlobeContextProvider from './contexts/GlobeContext';
 import Article from "./components/experiences/article/Article";
 import DBContextProvider from "./contexts/DBContext";
 import EditExperience from "./components/experiences/EditExperience";
+import CountryView from "./3D/view/CountryView";
 
 
 const App = () => {
@@ -29,6 +30,7 @@ const App = () => {
                   <Route path='/experiences' component={Experiences}/>
                   <PrivateRoute path='/add-experience' component={AddExperience}/>
                   <PrivateRoute path='/edit-experience/:id' component={EditExperience}/>
+                  <Route path='/view' component={CountryView}/>
               </Switch>
             </div>
           </GlobeContextProvider>

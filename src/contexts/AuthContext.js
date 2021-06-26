@@ -1,9 +1,12 @@
-import { useState, useEffect, createContext } from "react";
+import { useState, useEffect, useContext, createContext } from "react";
 import {auth} from '../firebase/firebase';
 import { getUser } from "../actions/dbActions";
 
 export const AuthContext = createContext();
 
+export const useAuth = () =>{
+    return useContext(AuthContext);
+}
 
 const AuthContextProvider = ({children}) => {
 
@@ -12,9 +15,10 @@ const AuthContextProvider = ({children}) => {
 
     useEffect(() => {
         const unsubscribe = auth.onAuthStateChanged((user)=>{
+          console.log(user);
           if(user)
           {
-
+            setCurrentUser(user);
             getUser(user.uid)
             .then(res=>{
                setCurrentUser({
@@ -36,6 +40,7 @@ const AuthContextProvider = ({children}) => {
     return (
         <AuthContext.Provider value={{
             currentUser,
+            setCurrentUser
         }}>
             {!loading && children}
         </AuthContext.Provider>
