@@ -31,6 +31,14 @@ export const addArticle = (article) =>{
                 });
 }
 
+export const editArticle = (article) =>{
+    return db.collection('articles').doc(article.id).update(article);
+}
+
+
+export const deleteArticle = (id) =>{
+    return db.collection('articles').doc(id).delete();
+}
 
 export const getArticles = () =>{
     return db.collection('articles').orderBy('createdAt').get();

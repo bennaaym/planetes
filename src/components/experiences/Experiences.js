@@ -18,6 +18,7 @@ const Experiences = () => {
                     articles &&
                     articles.map((article)=>{
                         return (
+                          
                             <ArticleResume 
                                 key={article.id}
                                 article={article}
@@ -28,15 +29,16 @@ const Experiences = () => {
             </div>
 
             <div className='flex flex-col items-center text-center col-start-10 col-span-3 border-l border-gray-700 text-white'>
-                <h2 className="w-full text-xl mb-4 font-bold tracking-wider mt-7">
+                <h2 className="w-full lg:text-xl sm:text-md mb-4 font-bold tracking-wider mt-7">
                     share your experience
                 </h2>
                 <button 
                         onClick={handleShareButton}
-                        className="bg-indigo-dark hover:bg-indigo-medium text-indigo-white font-black uppercase tracking-wider py-2 px-4 rounded focus:outline-none"
+                        className="bg-indigo-dark hover:bg-indigo-medium lg:text-lg sm:text-xs text-indigo-white font-black uppercase tracking-wider py-2 px-4 rounded focus:outline-none"
                         >                        
                         add article
                 </button>
+                
             </div>
         
         </div>

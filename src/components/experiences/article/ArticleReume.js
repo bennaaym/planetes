@@ -11,20 +11,20 @@ const ArticleResume = ({article}) => {
             <Link to={`/experiences/${article.id}`}>
                 <div className="text-indigo-white font-black mb-12">    
                     
-                    <p className="uppercase text-sm mb-2">
+                    <p className="uppercase lg:text-sm  sm:text-xs mb-2">
                         {article.country}
                     </p>
-                    <h1 className="text-4xl mb-4 hover:text-indigo-light uppercase">
+                    <h1 className="lg:text-4xl sm:text-xl mb-4 hover:text-indigo-light uppercase">
                         {article.title}
                     </h1>
-                    <p className="text-lg font-medium text-gray-300 mb-4">
+                    <p className="lg:text-lg sm:text-sm font-medium text-gray-300 mb-4">
                         {
                             article.description.substring(0,200)
                         }
                     </p>
                     {   
                         article.tags &&
-                        <ul className="flex items-center justify-start text-sm font-medium uppercase mb-3">
+                        <ul className="flex items-center justify-start text-sm font-medium uppercase mb-3 ">
                             {article.tags.map((tag,index)=>{
                                 return (
                                     <li 
@@ -37,10 +37,10 @@ const ArticleResume = ({article}) => {
                         </ul>
                     }
                     
-                    <div className="flex items-center justify-between text-sm font-medium">
+                    <div className="flex items-center justify-between text-sm md:text-xs font-medium">
                         <p className="italic tracking-wider relative top-1 text-xs">
                             by:
-                            <span className="ml-2 text-gray-200 text-sm font-bold uppercase not-italic">
+                            <span className="ml-2 text-gray-200 text-sm md:text-xs font-bold uppercase not-italic">
                                 {article.author},
                             </span>
                             <span className="ml-2 text-gray-300">
@@ -51,7 +51,7 @@ const ArticleResume = ({article}) => {
                             </span>
 
                         </p>
-                        <div className="flex items-center justify-between px-4 py-2 bg-gray-600 rounded-md relative -left-3 -top-2.5">
+                        <div className="flex items-center justify-between px-4 py-2 bg-gray-600 rounded-md relative lg:-left-3 lg:-top-2.5">
                             <div className="flex items-center justify-between mr-4 text-green-400">
                                 <FontAwesomeIcon icon={faThumbsUp} />
                                 <span className="pl-1">{article.likes.length}</span>

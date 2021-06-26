@@ -1,44 +1,77 @@
-import { useState,useRef,useContext } from "react";
+import { useState, useEffect, useRef } from "react";
 import Alert from "../sign/Alert";
-import { addArticle } from "../../actions/dbActions";
-import { AuthContext} from "../../contexts/AuthContext";
-import  { useHistory} from "react-router-dom"
+import { getCollection , editArticle } from "../../actions/dbActions";
+import  { useHistory , useLocation} from "react-router-dom"
 
-const AddExperience = () => {
+const EditExperience = () => {
 
-    const {currentUser} = useContext(AuthContext);
-    const history = useHistory();
     const [error,setError] = useState('');
     const [loading, setLoading] = useState(false);
+    const [formLoaded,setFormLoaded] = useState(false);
     const country = useRef();
     const title = useRef();
     const description = useRef();
 
+
+    const history = useHistory();
+    const {pathname} = useLocation();
+    const [article,setArticle] = useState();
+
+    useEffect(()=>{
+        const articleId = pathname.substring(pathname.lastIndexOf('/')+1);
+
+        const unsubscribe = getCollection('articles').doc(articleId).onSnapshot(snapshot=>{
+            setArticle({id:articleId,...snapshot.data()});
+        })
+
+        if(!formLoaded && article)
+        {
+            setFormLoaded(true);
+            country.current.value = article.country;
+            title.current.value = article.title;
+            description.current.value = article.description;
+        }
+    
+        return () => unsubscribe();
+    },[article,pathname,formLoaded]);
+
+   
+
     const handleSubmit=(event)=>{
         event.preventDefault();
-        addArticle({
-            country:country.current.value,
-            title:title.current.value,
-            description: description.current.value,
-            author:currentUser.displayName,
-            authorId:currentUser.uid,
-        })
-        .then(()=>{
-            setLoading(true);
-            setError('');
-            history.push('/experiences');
-        })
-        .catch(error =>{
-            setLoading(false);
-            setError(error.message);
-        })
+        if(window.confirm('Do you really want to modify this article ?'))
+        {
+            editArticle({
+                ...article,
+                country:country.current.value,
+                title:title.current.value,
+                description: description.current.value,
+            })
+            .then(()=>{
+                setLoading(true);
+                setError('');
+                history.push(`/experiences/${article.id}`);
+            })
+            .catch(error =>{
+                setLoading(false);
+                setError(error.message);
+            })
+        }
+        else
+        {
+            history.push(`/experiences/${article.id}`);
+        }
     }
 
+
     return (
-        <div className="h-full grid grid-cols-12 items-center justify-center ">
+        <>
+        {
+            !loading &&
+            <div className="h-full grid grid-cols-12 items-center justify-center ">
             <div className="flex flex-col items-center justify-center col-start-4 col-end-10 pt-10">
                 <h1 className="w-full text-indigo-white lg:text-3xl sm:text-2xl font-black tracking-wider uppercase mb-10">
-                    add new experience
+                    edit your experience
                 </h1>
                 <form 
                     onSubmit={handleSubmit}
@@ -86,7 +119,8 @@ const AddExperience = () => {
                 </form>
             </div>
         </div>
+    }</>
     );
 }
  
-export default AddExperience;
+export default EditExperience;

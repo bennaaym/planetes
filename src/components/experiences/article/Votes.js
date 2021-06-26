@@ -11,16 +11,19 @@ const Votes = ({article}) => {
     const [hasAgreed,setHasAgreed] = useState(false);
 
     useEffect(()=>{
+      if(currentUser)
+      {
         let hasVoted = article.likes.find(id => currentUser.uid === id);
         if(hasVoted) setHasAgreed(true);
         if(!hasVoted)  hasVoted = article.dislikes.find(id => currentUser.uid === id);
         if(hasVoted) setDisable(true);
-    },[currentUser.uid,disable,article,hasAgreed])
+      }
+    },[currentUser,disable,article,hasAgreed])
 
 
     return (
-        <div className="flex flex-col">
-            <div className="flex">
+        <div className="flex flex-col lg:flex-nowrap sm:flex-wrap sm:w-full">
+            <div className="flex sm:flex-wrap">
                 <Button 
                     articleId={article.id}
                     title={'I agree'}  

@@ -21,7 +21,7 @@ const Globe = ({data,setCurrentCountry}) => {
             <mesh 
                 ref={globeMesh}
             >
-                <sphereGeometry args={[2.5,100,100]}/>
+                <sphereGeometry args={[1.8,100,100]}/>
                 <shaderMaterial 
                     vertexShader={vertexShader}
                     fragmentShader={fragmentShader}

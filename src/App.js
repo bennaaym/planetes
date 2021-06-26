@@ -10,6 +10,7 @@ import AuthContextProvider from "./contexts/AuthContext";
 import GlobeContextProvider from './contexts/GlobeContext';
 import Article from "./components/experiences/article/Article";
 import DBContextProvider from "./contexts/DBContext";
+import EditExperience from "./components/experiences/EditExperience";
 
 
 const App = () => {
@@ -27,6 +28,7 @@ const App = () => {
                   <Route path='/experiences/:id' component={Article}/>
                   <Route path='/experiences' component={Experiences}/>
                   <PrivateRoute path='/add-experience' component={AddExperience}/>
+                  <PrivateRoute path='/edit-experience/:id' component={EditExperience}/>
               </Switch>
             </div>
           </GlobeContextProvider>

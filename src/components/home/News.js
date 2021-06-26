@@ -9,7 +9,7 @@ const News = () => {
     return (
         <div className="col-span-4  pl-4 pr-8 pt-36 h-screen" >
 
-            <h1 className="text-xl font-black text-indigo-light uppercase tracking-wider mb-8">
+            <h1 className="lg:text-xl sm:text-md font-black text-indigo-light uppercase tracking-wider mb-8">
                 <FontAwesomeIcon icon={faFire}/>
                 <span className="ml-3">
                     what's hot
@@ -20,9 +20,10 @@ const News = () => {
                 {
                     articles.slice(0,5).map((article,index)=>{
                         return(
-                        <Link to={`/experiences/${article.id}`}>
+                        <Link to={`/experiences/${article.id}`}  
+                              key={index}
+                        >
                             <div
-                                key={index}
                                 className="font-bold mb-6"
                             >
                                 <p className="text-xs text-indigo-300 uppercase tracking-widest mb-1">
@@ -33,7 +34,7 @@ const News = () => {
                                 </p>
                             
                             
-                                <h4 className="text-xl text-indigo-white hover:text-indigo-light cursor-pointer">
+                                <h4 className="lg:text-xl sm:text-sm text-indigo-white hover:text-indigo-light cursor-pointer">
                                     {article.title}
                                 </h4>
                             
