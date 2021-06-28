@@ -1,12 +1,12 @@
-import { useState,useRef,useContext } from "react";
+import { useState,useRef } from "react";
 import Alert from "../sign/Alert";
 import { addArticle } from "../../actions/dbActions";
-import { AuthContext} from "../../contexts/AuthContext";
+import {  useAuth} from "../../contexts/AuthContext";
 import  { useHistory} from "react-router-dom"
 
 const AddExperience = () => {
 
-    const {currentUser} = useContext(AuthContext);
+    const {currentUser} = useAuth();
     const history = useHistory();
     const [error,setError] = useState('');
     const [loading, setLoading] = useState(false);
@@ -36,7 +36,7 @@ const AddExperience = () => {
 
     return (
         <div className="h-full grid grid-cols-12 items-center justify-center ">
-            <div className="flex flex-col items-center justify-center col-start-4 col-end-10 pt-10">
+            <div className="flex flex-col items-center justify-center col-start-4 col-end-10 ">
                 <h1 className="w-full text-indigo-white lg:text-3xl sm:text-2xl font-black tracking-wider uppercase mb-10">
                     add new experience
                 </h1>

@@ -1,10 +1,10 @@
 import { useState, useRef } from 'react';
 import { useHistory } from 'react-router';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faGithub, faGoogle } from '@fortawesome/free-brands-svg-icons';
+import {  faGoogle ,faDiscord } from '@fortawesome/free-brands-svg-icons';
 import { Link } from 'react-router-dom';
 import Alert from './Alert';
-import { signUpWithEmailAndPassword, signInWithEmailAndPassword, signWithGoogle, signWithGithub } from '../../actions/authAction';
+import { signUpWithEmailAndPassword, signInWithEmailAndPassword, signWithGoogle } from '../../actions/authAction';
 import { addUser } from '../../actions/dbActions';
 
 
@@ -32,7 +32,7 @@ const Form = ({title,signin}) => {
                 setError('');
                 setLoading(true);
                 addUser(res.user.uid,user);
-                history.push('/');
+                history.goBack();
             })
             .catch((error)=>{
                 setLoading(false);
@@ -46,7 +46,7 @@ const Form = ({title,signin}) => {
             .then((res)=>{
                 setError('');
                 setLoading(true);
-                history.push('/');
+                history.goBack();
             })
             .catch((error)=>{
                 setLoading(false);
@@ -62,7 +62,8 @@ const Form = ({title,signin}) => {
         .then((res)=>{
             setError('');
             setLoading(true);
-            history.push('/');
+            addUser(res.user.uid,{name:res.user.displayName,email:res.user.email,picture:res.user.photoURL});
+            history.goBack();
         })
         .catch((error)=>{
             setLoading(false);
@@ -79,9 +80,9 @@ const Form = ({title,signin}) => {
                     </h3>
                     <div>
                         <button 
-                            onClick={()=>handleSocialClick(signWithGithub)}
+                            onClick={()=>{}}
                             className="mr-3 focus:outline-none">
-                            <FontAwesomeIcon icon={faGithub} size='2x'/>
+                            <FontAwesomeIcon icon={faDiscord} size='2x'/>
                         </button>
                         <button 
                             onClick={()=>handleSocialClick(signWithGoogle)}

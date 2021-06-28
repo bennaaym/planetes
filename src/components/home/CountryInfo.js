@@ -1,8 +1,7 @@
-import  {useContext} from 'react';
-import { GlobeContext } from '../../contexts/GlobeContext';
+import { useGlobe } from '../../contexts/GlobeContext';
 
 const CountryInfo = () => {
-    const {currentCountry} =  useContext(GlobeContext);
+    const {currentCountry} =  useGlobe();
     return (
        <>
         {

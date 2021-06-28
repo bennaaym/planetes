@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faThumbsUp  } from "@fortawesome/free-solid-svg-icons"
-import Moment from "react-moment";
+import PublisherInfo from "./PublisherInfo";
 
 
 const ArticleResume = ({article}) => {
@@ -24,7 +24,7 @@ const ArticleResume = ({article}) => {
                     </p>
                     {   
                         article.tags &&
-                        <ul className="flex items-center justify-start text-sm font-medium uppercase mb-3 ">
+                        <ul className="flex items-center justify-start text-sm font-medium uppercase mb-5 ">
                             {article.tags.map((tag,index)=>{
                                 return (
                                     <li 
@@ -38,19 +38,11 @@ const ArticleResume = ({article}) => {
                     }
                     
                     <div className="flex items-center justify-between text-sm md:text-xs font-medium">
-                        <p className="italic tracking-wider relative top-1 text-xs">
-                            by:
-                            <span className="ml-2 text-gray-200 text-sm md:text-xs font-bold uppercase not-italic">
-                                {article.author},
-                            </span>
-                            <span className="ml-2 text-gray-300">
-                                <Moment fromNow>
-                                    
-                                            {article.createdAt? article.createdAt.toDate() :''}
-                                </Moment>
-                            </span>
+                        
+                        <PublisherInfo
+                            article={article}
+                        />
 
-                        </p>
                         <div className="flex items-center justify-between px-4 py-2 bg-gray-600 rounded-md relative lg:-left-3 lg:-top-2.5">
                             <div className="flex items-center justify-between mr-4 text-green-400">
                                 <FontAwesomeIcon icon={faThumbsUp} />

@@ -15,7 +15,6 @@ const AuthContextProvider = ({children}) => {
 
     useEffect(() => {
         const unsubscribe = auth.onAuthStateChanged((user)=>{
-          console.log(user);
           if(user)
           {
             setCurrentUser(user);
@@ -26,7 +25,7 @@ const AuthContextProvider = ({children}) => {
                    displayName:res.data().name
                })
             })
-            .catch(error=>console.log(error));
+            .catch(error=>{});
           }
           if(!user) setCurrentUser(user);
           setLoading(false);

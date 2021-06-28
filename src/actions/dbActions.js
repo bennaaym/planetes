@@ -1,5 +1,4 @@
-import firebase from 'firebase/app'
-import {db} from '../firebase/firebase';
+import {db ,timestamp} from '../firebase/firebase';
 
 
 export const getCollection=(name)=>{
@@ -23,7 +22,7 @@ export const getUser = (id) =>{
 export const addArticle = (article) =>{
     return db.collection('articles').add({
                     ...article,
-                    createdAt:firebase.firestore.FieldValue.serverTimestamp(),
+                    createdAt:timestamp(),
                     likes:[],
                     dislikes:[],
                     comments:[],
@@ -63,3 +62,10 @@ export const updateArticleDislikes = (id,dislikes) =>{
         dislikes
     })
 }   
+
+
+/* gallery collection */
+
+export const addPicture = (picture) =>{
+    return db.collection('gallery').add(picture);
+}

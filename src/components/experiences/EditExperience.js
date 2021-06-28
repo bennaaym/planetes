@@ -69,7 +69,7 @@ const EditExperience = () => {
         {
             !loading &&
             <div className="h-full grid grid-cols-12 items-center justify-center ">
-            <div className="flex flex-col items-center justify-center col-start-4 col-end-10 pt-10">
+            <div className="flex flex-col items-center justify-center col-start-4 col-end-10 ">
                 <h1 className="w-full text-indigo-white lg:text-3xl sm:text-2xl font-black tracking-wider uppercase mb-10">
                     edit your experience
                 </h1>

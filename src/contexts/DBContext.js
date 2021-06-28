@@ -1,5 +1,6 @@
-import { useState, useEffect, useContext, createContext } from "react";
-import { getCollection } from "../actions/dbActions";
+import {  useContext, createContext } from "react";
+import { useFirestoreCollection } from "../hooks/useFirestoreCollection";
+
 
 const DBContext = createContext();
 
@@ -10,24 +11,17 @@ export const useDB =()=>{
 
 const DBContextProvider = ({children}) => {
 
-    const [articles , setArticles] = useState([]);
+    const { docs } = useFirestoreCollection('articles');
 
-    useEffect(() => {
-        const unsubscribe = getCollection('articles').orderBy('createdAt','desc').onSnapshot(snapshot=>{            
-            const articles = snapshot.docs.map(doc => {return {id:doc.id,...doc.data()}});
-            setArticles([...articles]);
-        })
-
-        return () => unsubscribe();
-
-    }, []);
+    
 
     return (
+        
         <DBContext.Provider value={{
-            articles
+            articles:docs
         }}>
             {children}
-        </DBContext.Provider>
+        </DBContext.Provider> 
     );
 }
  

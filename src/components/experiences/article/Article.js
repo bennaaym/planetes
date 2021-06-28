@@ -1,14 +1,14 @@
-import { useState, useEffect, useContext } from "react";
+import { useState, useEffect } from "react";
 import { useHistory , useLocation } from "react-router";
 import { getCollection,deleteArticle } from "../../../actions/dbActions";
-import { AuthContext } from "../../../contexts/AuthContext";
-import Moment from "react-moment";
+import { useAuth } from "../../../contexts/AuthContext";
 import RelatedArticles from "./RelatedArticles";
+import PublisherInfo from "./PublisherInfo";
 import Votes from "./Votes";
 
 const Article = () => {
 
-    const {currentUser} = useContext(AuthContext);
+    const {currentUser} = useAuth();
 
     const history = useHistory();
     const {pathname} = useLocation();
@@ -46,7 +46,7 @@ const Article = () => {
         <>
         {
             article && !isLoading &&
-            <div className="grid grid-cols-12 px-8 grap-1 pt-32 h-full">
+            <div className="grid grid-cols-12 px-8 grap-1 pt-16 h-full">
             <div className='col-span-8'>
                 <div className="text-indigo-white font-black mb-12">    
 
@@ -57,19 +57,9 @@ const Article = () => {
                         {article.title}
                     </h1>
                     <div className="flex sm:flex-wrap items-center justify-between text-sm font-medium mb-4">
-                        <p className="italic tracking-wider relative top-1 text-xs">
-                            by:
-                            <span className="ml-2 text-gray-200 text-sm font-bold uppercase not-italic">
-                                {article.author},
-                            </span>
-                            <span className="ml-2 text-gray-300">
-                                <Moment fromNow>
-                                    
-                                            {article.createdAt? article.createdAt.toDate():''}
-                                </Moment>
-                            </span>
-
-                        </p>
+                        <PublisherInfo
+                            article={article}
+                        />
                         {   
                             article.tags &&
                             <ul className="flex items-center justify-start lg:text-sm sm:text-xs font-medium uppercase sm:mt-3 mb-3">

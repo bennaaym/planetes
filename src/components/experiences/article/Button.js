@@ -1,12 +1,18 @@
-import { useContext } from "react";
-import { AuthContext } from "../../../contexts/AuthContext";
+import { useAuth } from "../../../contexts/AuthContext";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { useHistory } from "react-router";
 
 const Button = ({articleId,title,icon,votes,color,action,disable,agreed}) => {
     
-    const {currentUser} = useContext(AuthContext);
+    const history = useHistory();
+    const {currentUser} = useAuth();
    
     const handleClick = () =>{
+        if(!currentUser) 
+        {
+            history.push('/signin');
+            return;
+        }
         action(articleId,[currentUser.uid,...votes])
     }
 

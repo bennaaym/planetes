@@ -12,7 +12,7 @@ const Experiences = () => {
     }
 
     return (
-        <div className="grid grid-cols-12 px-8 grap-1 pt-32 h-full w-full">
+        <div className="grid grid-cols-12 px-8 grap-1 pt-16 h-full w-full">
             <div className='col-span-8'>
                 {
                     articles &&

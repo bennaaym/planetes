@@ -1,13 +1,15 @@
-import { useState , useEffect , createContext} from "react";
+import { useState , useEffect , createContext, useContext} from "react";
 import axios from 'axios';
 
 
 export const GlobeContext = createContext();
 
 
+export const useGlobe = () => useContext(GlobeContext);
+
 const GlobeContextProvider = ({children}) => {
     
-    const API = 'https://restcountries.eu/rest/v2/';
+    const API = process.env.REACT_APP_GLOBE_API;
     const [data,setData] = useState([]);
     const [currentCountry,setCurrentCountry] = useState(null);
 
@@ -38,7 +40,7 @@ const GlobeContextProvider = ({children}) => {
             console.log(error);
         })
 
-    },[setData])
+    },[API,setData])
 
 
     return(

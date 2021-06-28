@@ -1,16 +1,18 @@
-import { useState,useEffect, useContext } from "react";
-import { AuthContext } from "../../../contexts/AuthContext";
+import { useState,useEffect } from "react";
+import {  useAuth } from "../../../contexts/AuthContext";
 import Button from "./Button";
 import {faThumbsUp,faThumbsDown} from '@fortawesome/free-solid-svg-icons';
 import { updateArticleLikes,updateArticleDislikes } from "../../../actions/dbActions";
 
 const Votes = ({article}) => {
-   
-    const {currentUser} = useContext(AuthContext);
+    
+
+    const {currentUser} = useAuth();
     const [disable,setDisable] = useState(false);
     const [hasAgreed,setHasAgreed] = useState(false);
 
     useEffect(()=>{
+
       if(currentUser)
       {
         let hasVoted = article.likes.find(id => currentUser.uid === id);
@@ -18,6 +20,7 @@ const Votes = ({article}) => {
         if(!hasVoted)  hasVoted = article.dislikes.find(id => currentUser.uid === id);
         if(hasVoted) setDisable(true);
       }
+
     },[currentUser,disable,article,hasAgreed])
 
 

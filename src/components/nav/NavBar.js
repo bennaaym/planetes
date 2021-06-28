@@ -1,22 +1,33 @@
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import {faSignOutAlt} from '@fortawesome/free-solid-svg-icons'
-import {useContext} from 'react';
+import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import { AuthContext } from "../../contexts/AuthContext";
-import { signOut } from '../../actions/authAction';
+import { useAuth } from "../../contexts/AuthContext";
+import { useLocation } from "react-router";
+import DropDownMenu from './DropDownMenu';
 
 const NavBar = () => {
 
-    const {currentUser} = useContext(AuthContext);
+
+    const {pathname} = useLocation();
+    const {currentUser} = useAuth();
+    
+    const [absolute,setAbsolute] = useState(false);
+
     const links = [
-        {label : 'destinations' , path : '/destinations'},
+        {label : 'gallery' , path : '/gallery'},
         {label : 'experiences' , path : '/experiences'},
         {label : 'about' , path:'about'},
     ]
 
+    useEffect(()=>{
+        if(pathname === '/')
+            setAbsolute(true)
+        else
+            setAbsolute(false);
+    },[absolute,pathname]);
+
     return (
         <nav 
-            className="absolute z-40 w-full flex justify-between items-center px-8 py-6 text-indigo-white font-black uppercase">
+            className={`${absolute?'absolute':''} z-40 w-full flex flex-wrap justify-between items-center px-8 py-6 text-indigo-white font-black uppercase`}>
             
             <h1 className="text-3xl tracking-wider">
                 <Link to={'/'}>
@@ -47,15 +58,13 @@ const NavBar = () => {
                         </button>
                     </Link>
                 }
-
+ 
                 {
-                    currentUser &&
-                    <button 
-                        onClick={signOut}
-                        className="bg-indigo-light text-indigo-white text-sm font-bold tracking-wider uppercase px-6 py-2 ml-4 rounded-full focus:outline-none">
-                        <FontAwesomeIcon icon={faSignOutAlt} size='lg'/>
-                    </button>
+                    currentUser&&
+                    <DropDownMenu currentUser={currentUser}/>
                 }
+
+
             </ul>
         </nav>
     );
