@@ -26,7 +26,6 @@ export const addArticle = (article) =>{
                     likes:[],
                     dislikes:[],
                     comments:[],
-                    tags:['ai','society','government']
                 });
 }
 
@@ -48,6 +47,40 @@ export const getArticle = (id) =>{
 }
 
 
+export const getArticlesByCountry = (country) =>
+{
+    return db.collection('articles')
+             .where('country','==',country)
+             .orderBy('createdAt','desc')
+             .get();
+}
+
+
+export const getArticlesByTag = (tag) =>
+{
+    return db.collection('articles')
+             .where('tags','array-contains',tag)
+             .orderBy('createdAt','desc')
+             .get();
+}
+
+
+export const getArticlesByUser = (id) =>
+{
+    return db.collection('articles')
+             .where('authorId','==',id)
+             .orderBy('createdAt','desc')
+             .get();
+}
+
+
+
+
+
+
+
+
+
 export const updateArticleLikes = (id,likes) =>{
     return db.collection('articles').doc(id).update({
         likes
@@ -64,8 +97,16 @@ export const updateArticleDislikes = (id,dislikes) =>{
 }   
 
 
+
 /* gallery collection */
 
 export const addPicture = (picture) =>{
     return db.collection('gallery').add(picture);
+}
+
+
+export const updatePictureLikes = (id,likes) => {
+    return db.collection('gallery').doc(id).update({
+        likes
+    })
 }

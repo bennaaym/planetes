@@ -1,10 +1,12 @@
 import { useState, useEffect } from "react";
 import { useHistory , useLocation } from "react-router";
+import { Link } from 'react-router-dom';
 import { getCollection,deleteArticle } from "../../../actions/dbActions";
 import { useAuth } from "../../../contexts/AuthContext";
 import RelatedArticles from "./RelatedArticles";
 import PublisherInfo from "./PublisherInfo";
 import Votes from "./Votes";
+import Tags from "./Tags";
 
 const Article = () => {
 
@@ -26,9 +28,7 @@ const Article = () => {
     },[pathname]);
 
 
-    const handleEdit = () =>{
-        history.push(`/edit-experience/${article.id}`)
-    }
+   
 
     const handleDelete = () =>{
        if(window.confirm('Do you really want to delete this article'))
@@ -49,10 +49,13 @@ const Article = () => {
             <div className="grid grid-cols-12 px-8 grap-1 pt-16 h-full">
             <div className='col-span-8'>
                 <div className="text-indigo-white font-black mb-12">    
+                    
+                    <Link to={`/experiences/search/countries/${article.country}`}>
+                        <p className="hover:text-indigo-light uppercase lg:text-sm  sm:text-xs mb-2">
+                            {article.country}
+                        </p>
+                    </Link>
 
-                    <p className="uppercase lg:text-sm sm:text-xs mb-2">
-                        {article.country}
-                    </p>
                     <h1 className="lg:text-4xl sm:text-xl mb-4 uppercase">
                         {article.title}
                     </h1>
@@ -62,17 +65,7 @@ const Article = () => {
                         />
                         {   
                             article.tags &&
-                            <ul className="flex items-center justify-start lg:text-sm sm:text-xs font-medium uppercase sm:mt-3 mb-3">
-                                {article.tags.map((tag,index)=>{
-                                    return (
-                                        <li 
-                                            key={index}
-                                            className="bg-indigo-medium text-xs px-5 py-1 mr-2 rounded-full ">
-                                            #{tag}
-                                        </li>
-                                    )
-                                })}
-                            </ul>
+                            <Tags tags={article.tags}/>
                         }
                     </div>
 
@@ -87,12 +80,13 @@ const Article = () => {
                         {
                             (currentUser && currentUser.uid === article.authorId)&&
                             <div>
-                                <button 
-                                    onClick={handleEdit}
-                                    className=" bg-indigo-dark hover:bg-indigo-medium sm:text-xs text-indigo-white font-bold uppercase tracking-wider sm:mb-3  sm:w-full py-2 px-4 rounded focus:outline-none"
-                                    >                        
-                                    edit
-                                </button>
+                                <Link to={`/experiences/edit/${article.id}`}>
+                                    <button 
+                                        className=" bg-indigo-dark hover:bg-indigo-medium sm:text-xs text-indigo-white font-bold uppercase tracking-wider sm:mb-3  sm:w-full py-2 px-4 rounded focus:outline-none"
+                                        >                        
+                                        edit
+                                    </button>
+                                </Link>
                                 <button 
                                     onClick={handleDelete}
                                     className="bg-indigo-dark hover:bg-indigo-medium sm:text-xs text-indigo-white font-bold uppercase tracking-wider py-2 px-4 sm:w-full rounded focus:outline-none"

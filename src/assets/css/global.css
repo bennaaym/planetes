@@ -53,27 +53,27 @@ body
 }
 
 /* width */
-::-webkit-scrollbar 
+body::-webkit-scrollbar 
 {
     width: 8px;
     cursor: pointer;
 }
   
 /* Track */
-::-webkit-scrollbar-track 
+body::-webkit-scrollbar-track 
 {
     background: #F9FAFB;
 }
   
 /* Handle */
-::-webkit-scrollbar-thumb 
+body::-webkit-scrollbar-thumb 
 {
     background: #7969FF;
 }
   
 
 /* Handle on hover */
-::-webkit-scrollbar-thumb:hover 
+body::-webkit-scrollbar-thumb:hover 
 {
     cursor: pointer;
 }

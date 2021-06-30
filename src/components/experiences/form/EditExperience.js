@@ -1,7 +1,9 @@
 import { useState, useEffect, useRef } from "react";
-import Alert from "../sign/Alert";
-import { getCollection , editArticle } from "../../actions/dbActions";
+import Alert from "../../sign/Alert";
+import { getCollection , editArticle } from "../../../actions/dbActions";
 import  { useHistory , useLocation} from "react-router-dom"
+import TagBar from "./TagBar";
+import CountryList from "./CountryList";
 
 const EditExperience = () => {
 
@@ -15,6 +17,7 @@ const EditExperience = () => {
 
     const history = useHistory();
     const {pathname} = useLocation();
+    const [tags,setTags] = useState([]);
     const [article,setArticle] = useState();
 
     useEffect(()=>{
@@ -30,12 +33,21 @@ const EditExperience = () => {
             country.current.value = article.country;
             title.current.value = article.title;
             description.current.value = article.description;
+            setTags(article.tags);
         }
     
         return () => unsubscribe();
     },[article,pathname,formLoaded]);
 
    
+
+    const handleKeyDown = (event) =>{
+        if(event.key === 'Enter')
+        {
+            event.preventDefault();
+            return;
+        }
+    }
 
     const handleSubmit=(event)=>{
         event.preventDefault();
@@ -46,11 +58,12 @@ const EditExperience = () => {
                 country:country.current.value,
                 title:title.current.value,
                 description: description.current.value,
+                tags,
             })
             .then(()=>{
                 setLoading(true);
                 setError('');
-                history.push(`/experiences/${article.id}`);
+                history.push(`/experiences/article/${article.id}`);
             })
             .catch(error =>{
                 setLoading(false);
@@ -59,7 +72,7 @@ const EditExperience = () => {
         }
         else
         {
-            history.push(`/experiences/${article.id}`);
+            history.push(`/experiences/article/${article.id}`);
         }
     }
 
@@ -74,17 +87,13 @@ const EditExperience = () => {
                     edit your experience
                 </h1>
                 <form 
+                    onKeyDown={handleKeyDown}
                     onSubmit={handleSubmit}
                     className="w-full"
                 >
 
-                    <input 
-                        ref={country}
-                        className="lg:text-lg sm:text-sm rounded w-full py-2 px-3 mb-5 leading-tight focus:outline-none focus:shadow-outline" 
-                        type='text'
-                        placeholder='Country'
-                        required
-                    />
+                    <CountryList countryRef={country}/>
+
 
                     <input 
                         ref={title}
@@ -102,6 +111,9 @@ const EditExperience = () => {
                         >
                         
                     </textarea>
+
+                    <TagBar tags={tags} setTags={setTags} />
+
 
                     <button 
                         disabled={loading}

@@ -4,7 +4,7 @@ import { addPicture } from "../actions/dbActions";
 import { useAuth} from "../contexts/AuthContext";
 import { useHistory } from "react-router";
 
-export const useStorage = ({file,country,description}) =>{
+export const useStorage = ({file,country,description,tags}) =>{
 
     const { currentUser } = useAuth();
     const history = useHistory();
@@ -29,12 +29,14 @@ export const useStorage = ({file,country,description}) =>{
                 description,
                 author : currentUser.displayName,
                 authorId: currentUser.uid,
-                createdAt : timestamp()
+                tags,
+                createdAt : timestamp(),
+                likes:[],
             })
             setUrl(url);
-            history.push('gallery');
+            history.push('/gallery');
         })
-    },[country,currentUser,description,history, file]);
+    },[country,currentUser,description,history,tags, file]);
 
 
     return {url , progress , error};

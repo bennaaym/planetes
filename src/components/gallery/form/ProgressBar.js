@@ -1,9 +1,9 @@
-import { useStorage } from "../../hooks/useStorage";
-import Alert from "../sign/Alert";
+import { useStorage } from "../../../hooks/useStorage";
+import Alert from "../../sign/Alert";
 
-const ProgressBar = ({file,country,description}) => {
+const ProgressBar = ({file,country,description,tags}) => {
 
-    const {progress,error} = useStorage({file,country,description});
+    const {progress,error} = useStorage({file,country,description,tags});
 
     const percentage = (progress) =>{
         if(progress > 0 && progress < 25) return '1/5';

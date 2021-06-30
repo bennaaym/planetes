@@ -2,9 +2,9 @@ import { vertexShader } from "./shaders/vertex";
 import { fragmentShader } from "./shaders/fragment";
 import * as THREE from 'three';
 
-
 const Countries = ({data, globeSpeed, setCurrentCountry}) => {
-    
+
+
     const geoCoordsToSphericalCoords = (geoCoords) =>{
 
         /* transform geographic coordinates into spherical coordinates */
@@ -22,6 +22,7 @@ const Countries = ({data, globeSpeed, setCurrentCountry}) => {
         }
     }
 
+
     const handlePointerOver = (event) =>{
         const country = event.eventObject.userData;
         setCurrentCountry({
@@ -36,6 +37,7 @@ const Countries = ({data, globeSpeed, setCurrentCountry}) => {
         globeSpeed.current = 0.005;
         setCurrentCountry(null);
     }
+
     return (
         <>
            {
@@ -48,7 +50,7 @@ const Countries = ({data, globeSpeed, setCurrentCountry}) => {
                             position={[x,y,z]}
                             rotation={[0.0,-longitude,latitude-(Math.PI * 0.5)]}
                             userData={country}
-
+                            
                             onPointerOver={handlePointerOver}
                             onPointerOut={handlePointerOut}
                         >

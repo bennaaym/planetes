@@ -6,15 +6,14 @@ export const useFirestoreCollection = (collection) =>{
 
     useEffect(()=>{
         const unsubscribe = getCollection(collection)
-            .orderBy('createdAt','desc')
-            .onSnapshot(snapshot=>{
-                let documents = [];
-                snapshot.forEach(doc=>{
-                    documents.push({id:doc.id, ...doc.data()});
-                });
-            setDocs(documents);
-        });
-
+                .orderBy('createdAt','desc')
+                .onSnapshot(snapshot=>{
+                    let documents = []
+                    snapshot.forEach(doc=>{
+                        documents.push({id:doc.id,...doc.data()});
+                    })
+                    setDocs(documents);
+                })
 
         return () => unsubscribe();
     },[collection])

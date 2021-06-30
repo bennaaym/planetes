@@ -2,42 +2,39 @@ import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faThumbsUp  } from "@fortawesome/free-solid-svg-icons"
 import PublisherInfo from "./PublisherInfo";
-
+import Tags from "./Tags";
 
 const ArticleResume = ({article}) => {
     return (
         <>
           {article &&
-            <Link to={`/experiences/${article.id}`}>
+            
                 <div className="text-indigo-white font-black mb-12">    
                     
-                    <p className="uppercase lg:text-sm  sm:text-xs mb-2">
-                        {article.country}
-                    </p>
-                    <h1 className="lg:text-4xl sm:text-xl mb-4 hover:text-indigo-light uppercase">
-                        {article.title}
-                    </h1>
-                    <p className="lg:text-lg sm:text-sm font-medium text-gray-300 mb-4">
-                        {
-                            article.description.substring(0,200)
-                        }
-                    </p>
+                    <Link to={`/experiences/search/countries/${article.country}`}>
+                        <p className="hover:text-indigo-light uppercase lg:text-sm  sm:text-xs mb-2">
+                            {article.country}
+                        </p>
+                    </Link>
+                  
+
+                    <Link to={`/experiences/article/${article.id}`}>
+                        <h1 className="lg:text-4xl sm:text-xl mb-4 hover:text-indigo-light uppercase">
+                            {article.title}
+                        </h1>
+                        <p className="lg:text-lg sm:text-sm font-medium text-gray-300 mb-4">
+                            {
+                                article.description.substring(0,200)
+                            }
+                        </p>
+                    </Link>
+
                     {   
                         article.tags &&
-                        <ul className="flex items-center justify-start text-sm font-medium uppercase mb-5 ">
-                            {article.tags.map((tag,index)=>{
-                                return (
-                                    <li 
-                                        key={index}
-                                        className="bg-indigo-medium text-xs px-5 py-1 mr-2 rounded-full ">
-                                        #{tag}
-                                    </li>
-                                )
-                            })}
-                        </ul>
+                        <Tags tags={article.tags}/>
                     }
                     
-                    <div className="flex items-center justify-between text-sm md:text-xs font-medium">
+                    <div className="flex items-center justify-between text-sm md:text-xs font-medium mt-4">
                         
                         <PublisherInfo
                             article={article}
@@ -56,7 +53,6 @@ const ArticleResume = ({article}) => {
                     </div>
 
                 </div>
-            </Link>
             }
         </>
     );

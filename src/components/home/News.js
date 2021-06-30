@@ -20,7 +20,7 @@ const News = () => {
                 {
                     articles.slice(0,5).map((article,index)=>{
                         return(
-                        <Link to={`/experiences/${article.id}`}  
+                        <Link to={`/experiences/article/${article.id}`}  
                               key={index}
                         >
                             <div

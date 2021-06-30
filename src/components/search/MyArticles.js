@@ -1,14 +1,38 @@
-import { Link } from "react-router-dom";
-import ArticleResume from "./article/ArticleReume";
-import { useDB } from "../../contexts/DBContext";
+import { useState , useEffect} from 'react';
+import { Link } from 'react-router-dom';
+import { getArticlesByUser } from "../../actions/dbActions";
+import  ArticleResume from '../experiences/article/ArticleReume';
+import { useAuth } from '../../contexts/AuthContext';
 
-const Experiences = () => {
 
-    const {articles} = useDB(); 
+const MyArticles = () => {
     
+    const { currentUser } = useAuth(); 
+
+    const [articles,setArticles] = useState([]);
+    
+    useEffect(() => {
+       getArticlesByUser(currentUser.uid)
+       .then(snapshot=>{
+            let articles = []
+            snapshot.forEach(doc=>{
+                articles.push({id:doc.id,...doc.data()})
+            })
+
+            setArticles(articles);
+       })
+       .catch(error=>{
+           console.log(error)
+       })
+
+    }, [currentUser])
+
     return (
         <div className="grid grid-cols-12 px-8 grap-1 pt-16 h-full w-full">
-            <div className='col-span-8'>
+            <div className='col-span-8 '>
+                <h1 className="uppercase text-indigo-white w-full lg:text-2xl sm:text-md mb-4 font-black tracking-wider mb-10 tracking-wider">
+                    #my articles
+                </h1>
                 {
                     articles &&
                     articles.map((article)=>{
@@ -34,10 +58,11 @@ const Experiences = () => {
                             add article
                     </button>
                 </Link>   
+                
             </div>
         
         </div>
     );
 }
  
-export default Experiences;
+export default MyArticles;
