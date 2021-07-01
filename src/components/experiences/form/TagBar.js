@@ -13,7 +13,7 @@ const TagBar = ({tags, setTags}) => {
             tagRef.current.value = '';
     
             if(tags.includes(tag) || tag==='') return;
-            setTags([...tags,tag])
+            setTags([...tags,tag.toLowerCase()])
         }
     }
 

@@ -27,6 +27,7 @@ const Search = () => {
             setArticles(articles);
        })
        .catch(error=>{
+           console.log(error);
        })
 
     }, [searchTitle,pathname])

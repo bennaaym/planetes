@@ -33,6 +33,8 @@ const MyPictures = () => {
                     <h1 className="uppercase text-indigo-white w-full lg:text-2xl sm:text-md mb-4 font-black tracking-wider mb-10 tracking-wider">
                         #my pictures
                     </h1>
+                
+
                     <div className="grid grid-cols-12 gap-4 ">
                         
                         {
@@ -52,6 +54,7 @@ const MyPictures = () => {
             }
 
             <div className='flex flex-col items-center text-center col-start-10 col-span-3 border-l border-gray-700 text-white'>
+
                 <h2 className="w-full lg:text-xl sm:text-md mb-4 font-bold tracking-wider mt-7">
                     share a picture
                 </h2>
@@ -63,7 +66,6 @@ const MyPictures = () => {
                                 <FontAwesomeIcon icon={faPlus} size='lg'/>
                     </button>
                 </Link>                        
-                
             </div>
         
      </div>

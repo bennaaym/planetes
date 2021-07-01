@@ -140,6 +140,7 @@ export const addComment = (comment) =>{
     return db.collection('comments').add({
         ...comment,
         createdAt:timestamp(),
+        likes:[]
     });
 }
 
@@ -148,4 +149,16 @@ export const getCommentsByArticle = (articleId) =>{
     return db.collection('comments')
       .where('articleId','==',articleId)
       .orderBy('createdAt','desc')
+}
+
+
+export const updateCommentLikes = (id,likes) =>{
+    return db.collection('comments').doc(id).update({
+        likes
+    })
+}
+
+
+export const deleteComment = (id) =>{
+    return db.collection('comments').doc(id).delete();
 }

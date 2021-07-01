@@ -27,14 +27,14 @@ const AddExperience = () => {
     }
     const handleSubmit=(event)=>{
         event.preventDefault();
-        
+
         addArticle({
-            country:country.current.value,
+            country:country.current.value.toLowerCase(),
             title:title.current.value,
             description: description.current.value,
             author:currentUser.displayName,
             authorId:currentUser.uid,
-            tags
+            tags,
         })
         .then(()=>{
             setLoading(true);

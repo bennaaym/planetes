@@ -49,9 +49,8 @@ const Overlay = ({picture, setIsClicked}) => {
 
                             <p className="w-64 my-4 text-gray-900 text-md">
                                 {picture.description}
-                                Lorem ipsum dolor sit, amet consectetur adipisicing elit. Cupiditate voluptate explicabo repellendus quod minima magni nisi, doloribus nobis cum reiciendis?
                             </p>
-                            <Tags tags={['city','landscape','gmail']} page='gallery'/>
+                            <Tags tags={picture.tags} page='gallery'/>
                         </div>
                     </div>
 

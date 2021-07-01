@@ -99,7 +99,7 @@ const AddPicture = () => {
                         loading &&
                         <ProgressBar 
                             file={file.current.files[0]} 
-                            country={country.current.value}
+                            country={country.current.value.toLowerCase()}
                             description = {description.current.value}
                             tags={tags}
                         />

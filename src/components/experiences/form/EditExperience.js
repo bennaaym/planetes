@@ -30,7 +30,7 @@ const EditExperience = () => {
         if(!formLoaded && article)
         {
             setFormLoaded(true);
-            country.current.value = article.country;
+            country.current.value = article.country[0].toUpperCase() + article.country.slice(1);
             title.current.value = article.title;
             description.current.value = article.description;
             setTags(article.tags);
@@ -55,7 +55,7 @@ const EditExperience = () => {
         {
             editArticle({
                 ...article,
-                country:country.current.value,
+                country:country.current.value.toLowerCase(),
                 title:title.current.value,
                 description: description.current.value,
                 tags,
