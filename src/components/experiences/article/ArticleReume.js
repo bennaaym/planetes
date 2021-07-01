@@ -31,7 +31,7 @@ const ArticleResume = ({article}) => {
 
                     {   
                         article.tags &&
-                        <Tags tags={article.tags}/>
+                        <Tags tags={article.tags} page='experiences'/>
                     }
                     
                     <div className="flex items-center justify-between text-sm md:text-xs font-medium mt-4">

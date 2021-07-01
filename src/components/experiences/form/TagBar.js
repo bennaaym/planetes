@@ -53,8 +53,8 @@ const TagBar = ({tags, setTags}) => {
                 <input 
                 ref={tagRef}
                 onKeyDown={handleKeyDown}
-                className="w-20 text-md bg-transparent border-b-2 border-indigo-medium text-indigo-white rounded focus:outline-none"
-                placeholder="# Tag"
+                className="w-20 text-md  text-indigo-black rounded focus:outline-none px-3 py-1"
+                placeholder=" # Tag"
                 type='text'
                 />
             }

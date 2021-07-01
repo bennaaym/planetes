@@ -1,4 +1,5 @@
 import { useEffect } from "react";
+import { Link } from 'react-router-dom';
 import Tags from "../../experiences/article/Tags";
 import PublisherInfo from '../../experiences/article/PublisherInfo';
 
@@ -39,15 +40,18 @@ const Overlay = ({picture, setIsClicked}) => {
                         />
                         <div className=" absolute -bottom-20 -right-10 bg-indigo-white px-4 py-2 text-indigo-white rounded-lg">
                     
-                            <h1 className="text-lg font-black text-indigo-dark uppercase">
-                                {picture.country}
-                            </h1>
+                            <Link to={`/gallery/search/countries/${picture.country}`}>
+                                <h1 className="text-lg font-black text-indigo-dark uppercase">
+                                    {picture.country}
+                                </h1>
+                            </Link>
+                          
 
                             <p className="w-64 my-4 text-gray-900 text-md">
                                 {picture.description}
                                 Lorem ipsum dolor sit, amet consectetur adipisicing elit. Cupiditate voluptate explicabo repellendus quod minima magni nisi, doloribus nobis cum reiciendis?
                             </p>
-                            <Tags tags={['city','landscape','gmail']}/>
+                            <Tags tags={['city','landscape','gmail']} page='gallery'/>
                         </div>
                     </div>
 

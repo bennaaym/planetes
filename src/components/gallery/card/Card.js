@@ -1,15 +1,16 @@
 import { useEffect, useState  } from "react";
 import { useHistory } from "react-router";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {faEye, faHeart} from '@fortawesome/free-solid-svg-icons'
+import {faEye, faHeart , faTrashAlt} from '@fortawesome/free-solid-svg-icons'
 import Overlay from "./Overlay";
-import { updatePictureLikes } from "../../../actions/dbActions";
+import { updatePictureLikes, deletePicture } from "../../../actions/dbActions";
 import { useAuth } from "../../../contexts/AuthContext";
 
 const Card = ({picture,index}) => {
 
     const history = useHistory();
     const { currentUser } = useAuth();
+    const [isAuthor,setIsAuthor] = useState(false);
     const [hasLiked , setHasLiked] = useState(false);
     const [isClicked,setIsClicked] = useState(false); 
 
@@ -43,6 +44,8 @@ const Card = ({picture,index}) => {
     useEffect(()=>{
         if(currentUser && picture.likes.find(id => currentUser.uid === id))
             setHasLiked(true);
+        if(currentUser && currentUser.uid === picture.authorId)
+            setIsAuthor(true);
 
     },[picture,currentUser,setHasLiked])
 
@@ -61,6 +64,12 @@ const Card = ({picture,index}) => {
         }
 
         updatePictureLikes(picture.id,[currentUser.uid,...picture.likes]);
+    }
+
+
+    const deleteClicked = () =>{
+        if(window.confirm('Do you really want to delete this picture'))
+            deletePicture(picture.id)
     }
 
     return (
@@ -88,6 +97,16 @@ const Card = ({picture,index}) => {
 
                                 <FontAwesomeIcon icon={faHeart} size='lg'/>
                             </button>
+
+                            {
+                                isAuthor&&
+                                <button 
+                                    onClick={deleteClicked}
+                                    className="px-4 py-2 bg-opacity-85 hover:bg-opacity-100 bg-indigo-white rounded-lg  hover:text-indigo-light focus:outline-none ml-2 ">
+    
+                                    <FontAwesomeIcon icon={faTrashAlt} size='lg'/>
+                                </button>
+                            }
                         </div>
                         <h4 className="text-indigo-white text-xl uppercase mt-4 tracking-wider">
                             {picture.likes.length} likes

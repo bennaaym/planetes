@@ -16,6 +16,8 @@ import CustomeGallery from "./components/gallery/Gallery";
 import AddPicture from "./components/gallery/form/AddPicture";
 import Search from "./components/search/Search";
 import MyArticles from "./components/search/MyArticles";
+import GallerySearch from "./components/search/GallerySearch";
+import MyPictures from "./components/search/MyPictures";
 
 
 const App = () => {
@@ -32,6 +34,8 @@ const App = () => {
                   <PrivateRoute exact path='/signup' component={SignUp} flag={false}/>
                   <Route exact path='/gallery' component={CustomeGallery} />
                   <PrivateRoute exact path='/gallery/add' component={AddPicture} flag={true}/>
+                  <Route exact path='/gallery/search/tags/:id' component={GallerySearch}/>
+                  <Route exact path='/gallery/search/countries/:id' component={GallerySearch}/>
                   <Route exact path='/experiences/article/:id' component={Article}/>
                   <Route exact path='/experiences' component={Experiences}/>
                   <PrivateRoute  exact path='/experiences/add' component={AddExperience} flag={true}/>
@@ -40,6 +44,7 @@ const App = () => {
                   <Route exact path='/experiences/search/countries/:id' component={Search}/>
                   <Route exact path='/view' component={CountryView}/>
                   <PrivateRoute exact path='/experiences/my-articles' component={MyArticles} flag={true}/>
+                  <PrivateRoute exact path='/gallery/my-pictures' component={MyPictures} flag={true}/>
               </Switch>
             </div>
           </GlobeContextProvider>

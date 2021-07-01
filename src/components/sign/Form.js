@@ -73,7 +73,7 @@ const Form = ({title,signin}) => {
 
     return (
         <div className="flex items-center justify-center w-full h-full">
-            <div className="px-0 py-10 lg:w-1/3 md:w-1/2">
+            <div className="lg:w-1/3 md:w-1/2">
                 <div className="flex  justify-between items-center  text-indigo-white  uppercase">
                     <h3 className="text-xl font-black tracking-wider">
                         {title} with social 

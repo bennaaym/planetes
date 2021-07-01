@@ -7,6 +7,7 @@ import RelatedArticles from "./RelatedArticles";
 import PublisherInfo from "./PublisherInfo";
 import Votes from "./Votes";
 import Tags from "./Tags";
+import Comments from "./comments/Comments";
 
 const Article = () => {
 
@@ -65,7 +66,7 @@ const Article = () => {
                         />
                         {   
                             article.tags &&
-                            <Tags tags={article.tags}/>
+                            <Tags tags={article.tags} page='experiences'/>
                         }
                     </div>
 
@@ -96,6 +97,8 @@ const Article = () => {
                             </div>
                         }
                     </div>
+
+                    <Comments article={article}/>
                 </div>
             </div>
 

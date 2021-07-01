@@ -20,6 +20,7 @@ const DropDownMenu = ({currentUser}) => {
 
     const options = [
         {label:'my articles',path:'/experiences/my-articles',action:()=>{}},
+        {label:'my pictures',path:'/gallery/my-pictures',action:()=>{}},
         {label:'sign out',path:'/',action:handleSignOut}
     ]
     

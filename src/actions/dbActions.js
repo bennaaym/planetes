@@ -1,4 +1,4 @@
-import {db ,timestamp} from '../firebase/firebase';
+import { db ,timestamp} from '../firebase/firebase';
 
 
 export const getCollection=(name)=>{
@@ -75,12 +75,6 @@ export const getArticlesByUser = (id) =>
 
 
 
-
-
-
-
-
-
 export const updateArticleLikes = (id,likes) =>{
     return db.collection('articles').doc(id).update({
         likes
@@ -109,4 +103,49 @@ export const updatePictureLikes = (id,likes) => {
     return db.collection('gallery').doc(id).update({
         likes
     })
+}
+
+
+export const getPicturesByCountry = (country) =>
+{
+    return db.collection('gallery')
+             .where('country','==',country)
+             .orderBy('createdAt','desc');
+}
+
+export const getPicturesByTag = (tag) =>
+{
+    return db.collection('gallery')
+             .where('tags','array-contains',tag)
+             .orderBy('createdAt','desc');
+}
+
+export const getPicturesByUser = (id) =>
+{
+    return db.collection('gallery')
+             .where('authorId','==',id)
+             .orderBy('createdAt','desc');
+}
+
+
+export const deletePicture = (id) =>{
+    return db.collection('gallery').doc(id).delete();
+}
+
+
+
+/* comments collection */
+
+export const addComment = (comment) =>{
+    return db.collection('comments').add({
+        ...comment,
+        createdAt:timestamp(),
+    });
+}
+
+
+export const getCommentsByArticle = (articleId) =>{
+    return db.collection('comments')
+      .where('articleId','==',articleId)
+      .orderBy('createdAt','desc')
 }
