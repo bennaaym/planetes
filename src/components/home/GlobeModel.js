@@ -9,7 +9,7 @@ const GlobeModel = () => {
 
     const handleClick = () =>{
         if(!currentCountry) return;
-        const name = currentCountry.name;
+        const name = currentCountry.name.toLowerCase();
         setCurrentCountry(null);
         history.push(`/experiences/search/countries/${name}`);
     }
