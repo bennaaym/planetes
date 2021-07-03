@@ -3,7 +3,8 @@ import { Link } from 'react-router-dom';
 import { getArticlesByUser } from "../../actions/dbActions";
 import  ArticleResume from '../experiences/article/ArticleReume';
 import { useAuth } from '../../contexts/AuthContext';
-
+import { motion } from 'framer-motion';
+import { pageVariant } from '../../assets/animation/animate';
 
 const MyArticles = () => {
     
@@ -28,7 +29,12 @@ const MyArticles = () => {
     }, [currentUser])
 
     return (
-        <div className="grid grid-cols-12 px-8 grap-1 pt-16 h-full w-full">
+        <motion.div className="grid grid-cols-12 px-8 grap-1 pt-16 h-full w-full"
+            variants={pageVariant}
+            initial='hidden'
+            animate= 'visible'
+            exit='exit'
+        >
             <div className='col-span-8 '>
                 <h1 className="uppercase text-indigo-white w-full lg:text-2xl sm:text-md mb-4 font-black tracking-wider mb-10 tracking-wider">
                     #my articles
@@ -61,7 +67,7 @@ const MyArticles = () => {
                 
             </div>
         
-        </div>
+        </motion.div>
     );
 }
  

@@ -1,12 +1,13 @@
 import { useState, useRef } from 'react';
 import { useHistory } from 'react-router';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import {  faGoogle ,faDiscord } from '@fortawesome/free-brands-svg-icons';
+import {  faGoogle } from '@fortawesome/free-brands-svg-icons';
 import { Link } from 'react-router-dom';
 import Alert from './Alert';
 import { signUpWithEmailAndPassword, signInWithEmailAndPassword, signWithGoogle } from '../../actions/authAction';
 import { addUser } from '../../actions/dbActions';
-
+import { motion } from 'framer-motion';
+import { pageVariant } from '../../assets/animation/animate';
 
 const Form = ({title,signin}) => {
 
@@ -72,18 +73,18 @@ const Form = ({title,signin}) => {
     }
 
     return (
-        <div className="flex items-center justify-center w-full h-full">
+        <motion.div className="flex items-center justify-center w-full h-full relative -top-24"
+            variants={pageVariant}
+            initial='hidden'
+            animate= 'visible'
+            exit='exit'
+        >
             <div className="lg:w-1/3 md:w-1/2">
-                <div className="flex  justify-between items-center  text-indigo-white  uppercase">
-                    <h3 className="text-xl font-black tracking-wider">
+                <div className="flex lg:flex-row   justify-between items-center  text-indigo-white  uppercase">
+                    <h3 className="flex-wrap text-xl font-black tracking-wider mr-3">
                         {title} with social 
                     </h3>
-                    <div>
-                        <button 
-                            onClick={()=>{}}
-                            className="mr-3 focus:outline-none">
-                            <FontAwesomeIcon icon={faDiscord} size='2x'/>
-                        </button>
+                    <div className="mr-2">
                         <button 
                             onClick={()=>handleSocialClick(signWithGoogle)}
                             className="focus:outline-none">
@@ -159,7 +160,7 @@ const Form = ({title,signin}) => {
                    
                 </form>
             </div>
-        </div>
+        </motion.div>
     );
 }
  

@@ -5,7 +5,8 @@ import { faCloudUploadAlt} from '@fortawesome/free-solid-svg-icons';
 import ProgressBar from "./ProgressBar";
 import CountryList from "../../experiences/form/CountryList";
 import TagBar from "../../experiences/form/TagBar";
-
+import { motion } from "framer-motion";
+import { pageVariant } from "../../../assets/animation/animate";
 
 const AddPicture = () => {
 
@@ -41,7 +42,12 @@ const AddPicture = () => {
     }
 
     return (
-        <div className="h-full grid grid-cols-12 items-center justify-center ">
+        <motion.div className="h-full grid grid-cols-12 items-center justify-center "
+            variants={pageVariant}
+            initial='hidden'
+            animate= 'visible'
+            exit='exit'
+        >
             <div className="flex flex-col items-center justify-center col-start-4 col-end-10 ">
                 <h1 className="w-full text-indigo-white lg:text-3xl sm:text-2xl font-black tracking-wider uppercase mb-10">
                     add new picture
@@ -107,7 +113,7 @@ const AddPicture = () => {
 
                 </form>
             </div>
-        </div>
+        </motion.div>
     );
 }
  

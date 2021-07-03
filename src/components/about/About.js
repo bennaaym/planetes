@@ -1,3 +1,6 @@
+import { motion } from "framer-motion";
+import { pageVariant } from "../../assets/animation/animate";
+
 const About = () => {
 
     const content = [
@@ -45,24 +48,29 @@ const About = () => {
 
     return (
         <>
-            <div className="flex w-full justify-center  text-indigo-white px-8 mt-14 leading-7 font-medium text-lg">
-               <div className="w-9/12">
-                    <p className="">
+            <motion.div className=" pt-16 h-full flex w-full justify-center  text-indigo-white px-8  leading-7 font-medium textsm lg:text-lg"
+                variants={pageVariant}
+                initial='hidden'
+                animate= 'visible'
+                exit='exit'
+            >
+               <div className="w-9/12 lg:w-8/12">
+                    <p className="pb-16">
                             Welcome to Planetes <strong>(PLA-NE-TES)</strong>! This website is for those who love to travel and want to share their experiences and precious moments with the community, or those looking to explore other countries through the eyes of travel enthusiasts
                     </p>
                     <div className="">
                         {
                             content.map((section,index)=>{
                                 return(
-                                <section key={index} className="my-16">
-                                    <h1 className="text-4xl font-black uppercase mb-5 tracking-wide">
+                                <section key={index} className="pb-16">
+                                    <h1 className="text-2xl lg:text-4xl font-black uppercase mb-5 tracking-wide">
                                         {section.title}
                                     </h1>
                                     {
                                         section.sub.map((sub,index)=>{
                                             return(
-                                                <div className="mb-5">
-                                                    <h4 className="text-xl font-black capitalize mb-3 tracking-wide">
+                                                <div className="mb-5" key={index}>
+                                                    <h4 className="text-lg lg:text-xl font-black capitalize mb-3 tracking-wide">
                                                         {sub.title}
                                                     </h4>
                                                     <p className="">
@@ -76,7 +84,7 @@ const About = () => {
                         }
                     </div>
                </div>
-            </div>
+            </motion.div>
         </>
     );
 }

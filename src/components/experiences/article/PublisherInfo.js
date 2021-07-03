@@ -23,18 +23,22 @@ const PublisherInfo = ({article}) => {
         <>{
             author &&  createdAt &&
             <div className="flex items-center justify-center uppercase">
-                <div className="flex items-center justify-center h-10 w-10 bg-indigo-white rounded-full text-indigo-dark text-xl font-black focus:outline-none">
-                    {   !authorPicture&&
-                        <span>{author[0]}</span>
-                    }
-                    {
-                        authorPicture&&
+                
+                {
+                    !authorPicture&&
+                    <div className="flex items-center justify-center h-10 w-10 bg-indigo-white rounded-full text-indigo-dark text-xl font-black focus:outline-none">
+                        <span>{author[0]}</span>                   
+                    </div>
+                }
+                {   authorPicture&&
+                     <div className="flex items-center justify-center h-10 w-10  rounded-full focus:outline-none">
                         <img 
                             className="rounded-full"
                             src={authorPicture} 
                             alt='author_picture'/>
-                    }
-                </div>
+                     </div>
+                      
+                }
          
                 <div className="flex flex-col justify-center items-start text-xs ml-2 ">
                     <span className="font-bold">

@@ -3,11 +3,12 @@ import { useHistory , useLocation } from "react-router";
 import { Link } from 'react-router-dom';
 import { getCollection,deleteArticle } from "../../../actions/dbActions";
 import { useAuth } from "../../../contexts/AuthContext";
-import RelatedArticles from "./RelatedArticles";
 import PublisherInfo from "./PublisherInfo";
 import Votes from "./Votes";
 import Tags from "./Tags";
 import Comments from "./comments/Comments";
+import { motion } from "framer-motion";
+import { pageVariant } from "../../../assets/animation/animate";
 
 const Article = () => {
 
@@ -47,12 +48,17 @@ const Article = () => {
         <>
         {
             article && !isLoading &&
-            <div className="grid grid-cols-12 px-8 grap-1 pt-16 h-full">
-            <div className='col-span-8'>
+            <motion.div className="grid grid-cols-12 px-8 grap-1 pt-16 h-full"
+                variants={pageVariant}
+                initial='hidden'
+                animate= 'visible'
+                exit='exit'
+            >
+            <div className='col-span-12 sm:col-span-8'>
                 <div className="text-indigo-white font-black mb-12">    
                     
                     <Link to={`/experiences/search/countries/${article.country}`}>
-                        <p className="hover:text-indigo-light uppercase lg:text-sm  sm:text-xs mb-2">
+                        <p className="hover:text-indigo-light uppercase lg:text-sm  text-xs mb-2">
                             {article.country}
                         </p>
                     </Link>
@@ -76,21 +82,21 @@ const Article = () => {
                         }
                     </p>
 
-                    <div className="flex justify-between items-start">
+                    <div className="flex  justify-between items-start">
                         <Votes article={article}/>
                         {
                             (currentUser && currentUser.uid === article.authorId)&&
                             <div>
                                 <Link to={`/experiences/edit/${article.id}`}>
                                     <button 
-                                        className=" bg-indigo-dark hover:bg-indigo-medium sm:text-xs text-indigo-white font-bold uppercase tracking-wider sm:mb-3  sm:w-full py-2 px-4 rounded focus:outline-none"
+                                        className=" bg-indigo-dark hover:bg-indigo-medium sm:text-xs text-indigo-white font-bold uppercase tracking-wider mb-3  w-full py-2 px-4 rounded focus:outline-none"
                                         >                        
                                         edit
                                     </button>
                                 </Link>
                                 <button 
                                     onClick={handleDelete}
-                                    className="bg-indigo-dark hover:bg-indigo-medium sm:text-xs text-indigo-white font-bold uppercase tracking-wider py-2 px-4 sm:w-full rounded focus:outline-none"
+                                    className="bg-indigo-dark hover:bg-indigo-medium sm:text-xs text-indigo-white font-bold uppercase tracking-wider py-2 px-4 w-full rounded focus:outline-none"
                                     >                        
                                     delete
                                 </button>
@@ -102,10 +108,10 @@ const Article = () => {
                 </div>
             </div>
 
-            <div className='flex flex-col items-center text-center col-start-10 col-span-3 border-l border-gray-700 text-white'>
-                <RelatedArticles/>
+            <div className='hidden sm:flex flex-col items-center text-center col-start-10 col-span-3 border-l border-gray-700 text-white'>
+                
             </div>
-        </div>
+        </motion.div>
         }
        </>
     );

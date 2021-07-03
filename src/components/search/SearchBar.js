@@ -3,7 +3,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {faSearch} from '@fortawesome/free-solid-svg-icons';
 import { useHistory,useLocation } from "react-router";
 import { useGlobe } from "../../contexts/GlobeContext";
-
+import { motion } from 'framer-motion';
 const SearchBar = () => {
 
     const history = useHistory();
@@ -14,7 +14,7 @@ const SearchBar = () => {
 
     const handleSubmit=(event) =>{
         event.preventDefault();
-        const keyword = searchRef.current.value.replace(/\W/ig, " ").split(' ')[0].toLowerCase();
+        const keyword = searchRef.current.value.trim().replace(/\W/ig, " ").split(' ')[0].toLowerCase();
         
         if(!keyword) return;
         
@@ -26,7 +26,10 @@ const SearchBar = () => {
 
     return (
         <>
-            <div className="relative text-indigo-white mr-4">
+            <motion.div className="relative  text-indigo-white mr-4"
+                
+                whileHover={{scale:'1.1',transition:{duration:0.5}}}
+            >
                <form onSubmit={handleSubmit}>
                     <input 
                         ref={searchRef}
@@ -34,11 +37,11 @@ const SearchBar = () => {
                         type="search" 
                         placeholder="Search : keyword"
                     />
-                    <button type="submit" className="absolute right-0 -top-2 mt-5 mr-4 focus:outline-none">
+                    <button type="submit" className="absolute  right-0 -top-2 mt-5 mr-4 focus:outline-none">
                     <FontAwesomeIcon icon={faSearch}/>
                     </button>
                </form>
-            </div>
+            </motion.div>
         </>
     );
 }

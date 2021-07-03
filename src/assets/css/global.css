@@ -13,6 +13,7 @@
 body
 {
     background-color:#0D0D1C;
+    overflow-x: hidden;
 }
 
 .App

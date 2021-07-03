@@ -34,8 +34,8 @@ const Votes = ({article}) => {
 
 
     return (
-        <div className="flex flex-col lg:flex-nowrap sm:flex-wrap sm:w-full">
-            <div className="flex sm:flex-wrap">
+        <div className="flex flex-col  :w-full">
+            <div className="flex  flex-wrap md:flex-no-wrap">
                 <Button 
                     articleId={article.id}
                     title={'I agree'}  

@@ -1,13 +1,20 @@
 import { Link } from "react-router-dom";
 import ArticleResume from "./article/ArticleReume";
 import { useDB } from "../../contexts/DBContext";
+import { motion } from "framer-motion";
+import { pageVariant } from "../../assets/animation/animate";
 
 const Experiences = () => {
 
     const {articles} = useDB(); 
     
     return (
-        <div className="grid grid-cols-12 px-8 grap-1 pt-16 h-full w-full">
+        <motion.div className="grid grid-cols-12 px-8 grap-1 pt-16 h-full w-full"
+            variants={pageVariant}
+            initial='hidden'
+            animate= 'visible'
+            exit='exit'
+        >
             <div className='col-span-8'>
                 {
                     articles &&
@@ -36,7 +43,7 @@ const Experiences = () => {
                 </Link>   
             </div>
         
-        </div>
+        </motion.div>
     );
 }
  

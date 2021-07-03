@@ -5,7 +5,8 @@ import Card from '../gallery/card/Card';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPlus } from '@fortawesome/free-solid-svg-icons';
 import { useAuth } from '../../contexts/AuthContext';
-
+import { motion } from 'framer-motion';
+import { pageVariant } from '../../assets/animation/animate';
 const MyPictures = () => {
     
     const { currentUser } = useAuth(); 
@@ -25,7 +26,12 @@ const MyPictures = () => {
     }, [currentUser])
 
     return (
-        <div className="grid grid-cols-12 px-8 grap-1 pt-16  h-full w-full">
+        <motion.div className="grid grid-cols-12 px-8 grap-1 pt-16  h-full w-full"
+            variants={pageVariant}
+            initial='hidden'
+            animate= 'visible'
+            exit='exit'
+        >
             {
                 pictures&&
                 
@@ -68,7 +74,7 @@ const MyPictures = () => {
                 </Link>                        
             </div>
         
-     </div>
+     </motion.div>
     );
 }
  

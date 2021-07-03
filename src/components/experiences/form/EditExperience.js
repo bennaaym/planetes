@@ -4,7 +4,8 @@ import { getCollection , editArticle } from "../../../actions/dbActions";
 import  { useHistory , useLocation} from "react-router-dom"
 import TagBar from "./TagBar";
 import CountryList from "./CountryList";
-
+import { motion } from "framer-motion";
+import { pageVariant } from "../../../assets/animation/animate";
 const EditExperience = () => {
 
     const [error,setError] = useState('');
@@ -81,7 +82,13 @@ const EditExperience = () => {
         <>
         {
             !loading &&
-            <div className="h-full grid grid-cols-12 items-center justify-center ">
+            <motion.div className="h-full grid grid-cols-12 items-center justify-center "
+                variants={pageVariant}
+                initial='hidden'
+                animate= 'visible'
+                exit='exit'
+            
+            >
             <div className="flex flex-col items-center justify-center col-start-4 col-end-10 ">
                 <h1 className="w-full text-indigo-white lg:text-3xl sm:text-2xl font-black tracking-wider uppercase mb-10">
                     edit your experience
@@ -130,7 +137,7 @@ const EditExperience = () => {
 
                 </form>
             </div>
-        </div>
+        </motion.div>
     }</>
     );
 }

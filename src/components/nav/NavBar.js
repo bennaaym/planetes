@@ -4,7 +4,7 @@ import { useAuth } from "../../contexts/AuthContext";
 import { useLocation } from "react-router";
 import DropDownMenu from './DropDownMenu';
 import SearchBar from "../search/SearchBar";
-
+import { motion } from "framer-motion";
 const NavBar = () => {
 
 
@@ -12,12 +12,14 @@ const NavBar = () => {
     const {currentUser} = useAuth();
     
     const [absolute,setAbsolute] = useState(false);
-
+    
     const links = [
         {label : 'gallery' , path : '/gallery'},
         {label : 'experiences' , path : '/experiences'},
         {label : 'about' , path:'about'},
     ]
+
+    const logo = ['p','l','a','n','e','t','e','s'];
 
     useEffect(()=>{
         if(pathname === '/')
@@ -28,15 +30,28 @@ const NavBar = () => {
 
     return (
         <nav 
-            className={`${absolute?'absolute':''} z-40 w-full flex flex-wrap justify-between items-center px-8 py-6 text-indigo-white font-black uppercase`}>
+            className={` ${absolute?'absolute':'relative'} z-40 w-full flex flex-wrap justify-center md:justify-between items-center px-8 py-6 text-indigo-white font-black uppercase`}
+        >
             
-            <h1 className="text-3xl tracking-wider">
+            <h1 className="text-3xl tracking-wider mb-4 md:mb-0">
                 <Link to={'/'}>
-                    planetes
+                    {
+                        logo.map((char,index)=>{
+                            return(
+                                <motion.div
+                                    key={index}
+                                    whileHover={{scale:1.4,rotate:-10}}
+                                    className="inline-block"
+                                >
+                                    {char}
+                                </motion.div>
+                            )
+                        })
+                    }
                 </Link>
             </h1>
 
-            <ul className="flex items-center text-sm tracking-wider font-bold">
+            <ul className="flex justify-center items-center text-sm tracking-wider font-bold">
                 {
                     links.map((link,index)=>{
                         return(
@@ -51,6 +66,8 @@ const NavBar = () => {
                         )
                     })
                 }
+                <SearchBar/>
+
                 {
                     !currentUser &&
                     <Link to={'/signin'}>
@@ -59,14 +76,10 @@ const NavBar = () => {
                         </button>
                     </Link>
                 }
- 
+
                 {
                     currentUser&&
-                    <>
-                        <SearchBar/>
-
-                        <DropDownMenu currentUser={currentUser}/>
-                    </>
+                    <DropDownMenu currentUser={currentUser}/>
                 }
 
 
