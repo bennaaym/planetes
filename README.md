@@ -28,7 +28,7 @@
 
 [![Product Name Screen Shot][product-screenshot]](https://planetes-app.web.app/)
 
-Welcome to Planetes (PLA-NE-TES)! This website is for those who love to travel and want to share their experiences and precious moments with the community, or those looking to explore other countries through the eyes of travel enthusiasts .
+Welcome to [Planetes](https://planetes-app.web.app/) (PLA-NE-TES)! This website is for those who love to travel and want to share their experiences and precious moments with the community, or those looking to explore other countries through the eyes of travel enthusiasts .
 
 ### Built With
 
@@ -83,8 +83,8 @@ Distributed under the MIT License. See `LICENSE` for more information.
 <!-- CONTACT -->
 ## Links
 
-Project website : [https://planetes-app.web.app/](https://planetes-app.web.app/)
-Project repo: [https://github.com/bennaaym/planetes.git](https://github.com/bennaaym/planetes.git)
+* Project website : [https://planetes-app.web.app/](https://planetes-app.web.app/)
+* Project repo: [https://github.com/bennaaym/planetes.git](https://github.com/bennaaym/planetes.git)
 
 
 
