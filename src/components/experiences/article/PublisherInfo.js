@@ -1,11 +1,10 @@
-import { useEffect } from "react";
+import { useState, useEffect } from "react";
 import Moment from "react-moment";
-import { useState } from "react/cjs/react.development";
 import { getUser } from "../../../actions/dbActions";
 
 const PublisherInfo = ({article}) => {
 
-    /*const [authorPicture,setAuthorPicture] = useState(null);
+    const [authorPicture,setAuthorPicture] = useState(null);
     const {author,createdAt} = article
 
     useEffect(() => {
@@ -19,11 +18,11 @@ const PublisherInfo = ({article}) => {
                 console.log(error);
             });
         }
-    }, [article,setAuthorPicture])*/
+    }, [article,setAuthorPicture])
     
     return (
         <>{
-            /*author &&  createdAt &&
+            author &&  createdAt &&
             <div className="flex items-center justify-center uppercase">
                 
                 {
@@ -52,7 +51,7 @@ const PublisherInfo = ({article}) => {
                         </Moment>
                     </span>
                 </div>
-            </div>*/
+            </div>
         }</>
     );
 }

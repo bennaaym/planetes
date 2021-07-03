@@ -1,6 +1,5 @@
-import { useEffect } from "react";
+import { useState, useEffect } from "react";
 import Moment from "react-moment";
-import { useState } from "react/cjs/react.development";
 import { deleteComment, getUser, updateCommentLikes } from "../../../../actions/dbActions";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHeart , faTrashAlt} from '@fortawesome/free-solid-svg-icons';
@@ -18,14 +17,14 @@ const Comment = ({comment}) => {
 
     useEffect(() => {
 
-        if(comment.authorId)
-        {
-            getUser(comment.authorId)
-            .then(res=>{
-                setAuthorPicture(res.data().picture);
-            })
-            .catch(error=>{});
-        }
+        if(!comment) return;
+        
+        getUser(comment.authorId)
+        .then(res=>{
+            setAuthorPicture(res.data().picture);
+        })
+        .catch(error=>{});
+       
         if(!currentUser) return;
         if(comment.likes.find(id=>currentUser.uid === id)) setHasLiked(true);
         if(currentUser.uid === comment.authorId) setIsAuthor(true);

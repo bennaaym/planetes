@@ -73,7 +73,7 @@ const Form = ({title,signin}) => {
     }
 
     return (
-        <motion.div className="flex items-center justify-center w-full h-full relative -top-24"
+        <motion.div className="flex items-center justify-center w-full h-full "
             variants={pageVariant}
             initial='hidden'
             animate= 'visible'
