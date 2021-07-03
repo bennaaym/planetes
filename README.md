@@ -1,70 +1,103 @@
-# Getting Started with Create React App
+<!-- TABLE OF CONTENTS -->
+<details open="open">
+  <summary>Table of Contents</summary>
+  <ol>
+    <li>
+      <a href="#about-the-project">About The Project</a>
+      <ul>
+        <li><a href="#built-with">Built With</a></li>
+      </ul>
+    </li>
+    <li>
+      <a href="#getting-started">Getting Started</a>
+      <ul>
+        <li><a href="#prerequisites">Prerequisites</a></li>
+        <li><a href="#installation">Installation</a></li>
+      </ul>
+    </li>
+    <li><a href="#license">License</a></li>
+    <li><a href="#links">Links</a></li>
+    <li><a href="#acknowledgements">Acknowledgements</a></li>
+  </ol>
+</details>
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-## Available Scripts
 
-In the project directory, you can run:
+<!-- ABOUT THE PROJECT -->
+## About The Project
 
-### `npm start`
+[![Product Name Screen Shot][product-screenshot]](https://planetes-app.web.app/)
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+Welcome to Planetes (PLA-NE-TES)! This website is for those who love to travel and want to share their experiences and precious moments with the community, or those looking to explore other countries through the eyes of travel enthusiasts .
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+### Built With
 
-### `npm test`
+* [Tailwindcss](https://tailwindcss.com/)
+* [React.js](https://reactjs.org)
+* [Three.js](https://threejs.org/)
+* [React Three Fiber](https://github.com/pmndrs/react-three-fiber)
+* [Firebase](https://firebase.google.com)
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
 
-### `npm run build`
+<!-- GETTING STARTED -->
+## Getting Started
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### Prerequisites
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+* [Node.js](https://nodejs.org)
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+### Installation
 
-### `npm run eject`
+1. Clone the repo
+   ```sh
+   git clone https://github.com/bennaaym/planetes.git
+   ```
+2. Install NPM packages
+   ```sh
+   npm install
+   ```
+3. create a `.env.local` file and use your firebase app SDK info
+   ```JS
+    # firebaseapp
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+    REACT_APP_FIREBASE_API_KEY= " get it from your firebase app SDK "
+    REACT_APP_FIREBASE_AUTH_DOMAIN= " get it from your firebase app SDK "
+    REACT_APP_FIREBASE_PROJECT_ID= " get it from your firebase app SDK "
+    REACT_APP_FIREBASE_STORAGE_BUCKET=" get it from your firebase app SDK "
+    REACT_APP_FIREBASE_MESSAGING_SENDER_ID=" get it from your firebase app SDK "
+    REACT_APP_FIREBASE_ID=" get it from your firebase app SDK "
+    
+    #free API that provides information about different countries
+    REACT_APP_GLOBE_API='https://restcountries.eu/rest/v2/'
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+   ```
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+<!-- LICENSE -->
+## License
+[![MIT License][license-shield]][license-url]<br>
+Distributed under the MIT License. See `LICENSE` for more information.
 
-## Learn More
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+<!-- CONTACT -->
+## Links
 
-### Code Splitting
+Project website : [https://planetes-app.web.app/](https://planetes-app.web.app/)
+Project repo: [https://github.com/bennaaym/planetes.git](https://github.com/bennaaym/planetes.git)
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
 
-### Analyzing the Bundle Size
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+<!-- ACKNOWLEDGEMENTS -->
+## Acknowledgements
+* [Font Awesome](https://fontawesome.com)
 
-### Making a Progressive Web App
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
 
-### Advanced Configuration
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
 
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+<!-- MARKDOWN LINKS & IMAGES -->
+<!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
+[license-shield]: https://img.shields.io/github/license/othneildrew/Best-README-Template.svg?style=for-the-badge
+[license-url]: https://github.com/othneildrew/Best-README-Template/blob/master/LICENSE.txt
+[product-screenshot]: https://i.ibb.co/Qm946FY/screenshot.png
