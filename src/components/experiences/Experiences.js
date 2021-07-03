@@ -9,6 +9,8 @@ const Experiences = () => {
     const {articles} = useDB(); 
     
     return (
+      <>{
+        articles&&
         <motion.div className="grid grid-cols-12 px-8 grap-1 pt-16 h-full w-full"
             variants={pageVariant}
             initial='hidden'
@@ -20,7 +22,7 @@ const Experiences = () => {
                     articles &&
                     articles.map((article)=>{
                         return (
-                          
+                        
                             <ArticleResume 
                                 key={article.id}
                                 article={article}
@@ -42,8 +44,9 @@ const Experiences = () => {
                     </button>
                 </Link>   
             </div>
-        
+    
         </motion.div>
+      }</>
     );
 }
  

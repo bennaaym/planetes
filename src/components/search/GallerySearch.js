@@ -19,7 +19,7 @@ const GallerySearch = () => {
        document.querySelector('body').style.position='';
 
        const path = pathname.split('/');
-       const searchTitle = (path[path.length-1]).split(' ')[0];
+       const searchTitle = path[path.length-1];
        setSearchTitle(searchTitle);
        let searchMethod = null;
        (path.includes('countries')) ? searchMethod = getPicturesByCountry : searchMethod = getPicturesByTag;

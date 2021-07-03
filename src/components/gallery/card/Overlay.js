@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { Link } from 'react-router-dom';
 import Tags from "../../experiences/article/Tags";
 import PublisherInfo from '../../experiences/article/PublisherInfo';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -65,9 +66,11 @@ const Overlay = ({picture, setIsClicked}) => {
                         >
                         <div className="flex items-center justify-between mb-3">
                                 <div className="flex items-center text-indigo-dark uppercase font-black tracking-wider">
-                                    <span className="mr-3 text-2xl">
-                                        {picture.country}
-                                    </span>
+                                    <Link to={`/gallery/search/countries/${picture.country}`}>
+                                        <span className="mr-3 text-2xl">
+                                            {picture.country}
+                                        </span>
+                                    </Link>
                                     <button 
                                         onClick={()=>setShowCard(false)}
                                         className="opacity-75 focus:outline-none">
@@ -80,7 +83,6 @@ const Overlay = ({picture, setIsClicked}) => {
                             </div>
                             <p className="text-md mb-3">
                                 {picture.description}
-                                Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempore dignissimos consequuntur vero iste. Quos voluptate pariatur beatae dolorem alias suscipit est accusantium porro, voluptatem inventore exercitationem cupiditate aperiam, esse error.
                             </p>
                         <div 
                             onClick={handleClick}

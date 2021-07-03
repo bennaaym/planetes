@@ -40,7 +40,7 @@ const NavBar = () => {
                             return(
                                 <motion.div
                                     key={index}
-                                    whileHover={{scale:1.4,rotate:-10}}
+                                    whileHover={{scale:1.3}}
                                     className="inline-block"
                                 >
                                     {char}

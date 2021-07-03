@@ -34,7 +34,10 @@ const Votes = ({article}) => {
 
 
     return (
-        <div className="flex flex-col  :w-full">
+        <>
+        {
+            article &&
+            <div className="flex flex-col  :w-full">
             <div className="flex  flex-wrap md:flex-no-wrap">
                 <Button 
                     articleId={article.id}
@@ -64,7 +67,7 @@ const Votes = ({article}) => {
                 you already {hasAgreed? 'agreed':'disagreed'}  with this content.
             </p>
             }
-        </div>
+        </div>}</>
     );
 }
  

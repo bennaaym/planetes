@@ -38,30 +38,34 @@ const Comments = ({article}) => {
 
  
     return (  
-        <div className="mt-10">
-           <h1 className="text-3xl mb-4 font-bold tracking-wider">
-               Comments
-           </h1>
-            <textarea 
-                ref={commentRef}
-                onKeyDown={handleKeyDown}
-                className="lg:text-lg sm:text-sm text-gray-700 w-full h-16 py-2 px-3 mb-5 focus:outline-none resize-none rounded" 
-                placeholder={!currentUser? 'Please, sign in to leave a comment':'Write a comment'}
-                disabled={!currentUser}
-                >       
-            </textarea>
-            <ul className="flex flex-col items-start mt-10">
-               {
-                  comments.map(comment=>{
-                      return(
-                          <li key={comment.id} className="w-full h-full mb-16">                
-                            <Comment comment={comment}/>
-                          </li>
-                      )
-                  })
-               }
-            </ul>
-        </div>
+        <>
+        {
+            article &&
+            <div className="mt-10">
+            <h1 className="text-3xl mb-4 font-bold tracking-wider">
+                Comments
+            </h1>
+                <textarea 
+                    ref={commentRef}
+                    onKeyDown={handleKeyDown}
+                    className="lg:text-lg sm:text-sm text-gray-700 w-full h-16 py-2 px-3 mb-5 focus:outline-none resize-none rounded" 
+                    placeholder={!currentUser? 'Please, sign in to leave a comment':'Write a comment'}
+                    disabled={!currentUser}
+                    >       
+                </textarea>
+                <ul className="flex flex-col items-start mt-10">
+                {
+                    comments.map(comment=>{
+                        return(
+                            <li key={comment.id} className="w-full h-full mb-16">                
+                                <Comment comment={comment}/>
+                            </li>
+                        )
+                    })
+                }
+                </ul>
+            </div>
+        }</>
     );
 }
  

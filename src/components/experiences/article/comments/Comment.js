@@ -60,7 +60,18 @@ const Comment = ({comment}) => {
             author &&  createdAt &&
             <div className="flex h-full items-center justify-center w-full  bg-opacity-90 bg-indigo-white  font-bold tracking-wider rounded">
                 <div className="w-16 mr-2 relative">
-                    <img src={authorPicture} className="relative -top-10 -left-5 rounded-lg " alt=''/>
+                    {
+                        !authorPicture&&
+                        <div className="relative flex items-center justify-center w-14 h-14 -top-10 -left-5 rounded-lg bg-indigo-white">
+                            <span className="text-indigo-dark uppercase text-4xl font-black">
+                                {author[0]}
+                            </span>                   
+                        </div>
+                    }
+                    {
+                        authorPicture&&
+                        <img src={authorPicture} className="relative -top-10 -left-5 rounded-lg " alt=''/>
+                    }
                     <div className="absolute -top-6 left-12 w-96 text-xs font-light" >
                         <span className="font-medium">{comment.author} | </span>
                         <Moment fromNow>{comment.createdAt.toDate()}</Moment>

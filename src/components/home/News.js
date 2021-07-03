@@ -24,7 +24,7 @@ const News = () => {
                               key={index}
                         >
                             <div
-                                className="font-bold mb-6"
+                                className="font-bold mb-6 capitalize"
                             >
                                 <p className="text-xs text-indigo-300 uppercase tracking-widest mb-1">
                                     <FontAwesomeIcon icon={faMapMarkerAlt}/>

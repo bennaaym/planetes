@@ -15,7 +15,9 @@ const PublisherInfo = ({article}) => {
             .then(res=>{
                 setAuthorPicture(res.data().picture);
             })
-            .catch(error=>{});
+            .catch(error=>{
+                console.log(error);
+            });
         }
     }, [article,setAuthorPicture])
     
